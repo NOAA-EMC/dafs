@@ -1,0 +1,3 @@
+[submodule "sorc/UPP"]
+	path = sorc/UPP
+	url = https://github.com/NOAA-EMC/UPP
