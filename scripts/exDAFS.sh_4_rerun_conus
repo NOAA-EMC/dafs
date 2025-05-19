@@ -4,25 +4,21 @@ set -x
 
 ###########################################################################
 #
-# This is used for cronjob 
+# This is used for rerun by "exDAFS.sh_4_rerun_conus yyyymmddhh"
 #
 ###########################################################################
 
 #--- USE for cronjob ----
 
-cndate=`${NDATE}`
+cndate=$1
 
-#=====================================================================
-#=== the cronjob is processed 1 hours after the data pulled from PROD
-#    need to "-1" to get the correct fcst hour
-#=====================================================================
-
-cdate=$(${NDATE} -1 $cndate)
+cdate=$cndate
+# cdate=$(${NDATE} -1 $cndate)
 
 default_date="cdate_4_cycle"
 default_fhr="fhr_4_cycle"
 
-submit=submit_DAFS_AK.sh
+submit=submit_DAFS_CONUS.sh
 
 for (( ifhr=0; ifhr<=18; ifhr++ )); do
   fhr=$(printf "%02d" $ifhr)
