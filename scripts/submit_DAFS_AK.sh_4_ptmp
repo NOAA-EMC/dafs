@@ -139,13 +139,18 @@ cp ${gitdir}/fix/rap_micro_lookup.dat eta_micro_lookup.dat
 ${APRUN} ${POSTGPEXEC} < itag > outpost_hrrr_${NEWDATE}
 
 dafs_ifi=dafs.t${cycle}z.ifi.ak.f0${fhr}.grib2
-mv IFIFIP.GrbF${fhr} ${dafs_ifi}
-mv dafs.t* ${DAFS_FSCT}
+
+#-- remove the leading 0"
+fhrx=$(expr $fhr + 0)
+
+if [ $fhrx -gt 0 ]; then
+   mv IFIFIP.GrbF${fhr} ${DAFS_FSCT}/${dafs_ifi}
 
 ###----- PRDGEN process and WMO header ----------------------
 
-prdgen_loc=${dafs_main}/ush/prdgen
-${prdgen_loc}/rrfs_subset_ifi_304m.sh_4_ak ${yyyymmdd} ${cycle} ${fhr} ${DAFS_FSCT} ${dafs_ifi} ${dafs_main}
+   prdgen_loc=${dafs_main}/ush/prdgen
+   ${prdgen_loc}/rrfs_subset_ifi_304m.sh_4_ak ${yyyymmdd} ${cycle} ${fhrx} ${DAFS_FSCT} ${dafs_ifi} ${dafs_main}
+fi
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date
