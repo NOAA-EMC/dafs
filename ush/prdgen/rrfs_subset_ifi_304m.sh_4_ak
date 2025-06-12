@@ -1,0 +1,99 @@
+#!/bin/bash
+#
+
+module load prod_util
+set -x
+
+# ---- Get grib data at certain record # ----------------------
+#
+#  subset IFI for each variable at every 304 m & separate files 
+#
+
+#--- wgrib2
+wgrib2=/u/hui-ya.chuang/bin/wgrib2
+
+date=$1
+cyc=$2
+ifhr=$3
+data=$4
+fnamei=$5
+dafs_main=$6
+
+mkdir -p ${data}/ifi-304m
+mkdir -p ${data}/wmo
+
+ifi_outdir=${data}/ifi-304m
+wmo_outdir=${data}/wmo
+
+gridid=ak3km
+dom=ak
+
+FIXprdgen=/lfs/h2/emc/physics/save/hsin-mu.lin/CIRA/DAFS/fix/prdgen
+parmdir=/lfs/h2/emc/physics/save/hsin-mu.lin/CIRA/DAFS/parm
+
+fhr=$(printf "%03d" $ifhr)
+
+#--------------------------------------------------------------- 
+#-- process WMO data
+
+  fname1=grib2.ifi.t${cyc}z.f${fhr}.${gridid}
+  fname2=grib2.ifi.t${cyc}z.sld.f${fhr}.${gridid}
+  fname3=grib2.ifi.t${cyc}z.sev.f${fhr}.${gridid}
+
+  #-- ICPRB
+  
+  $wgrib2 ${data}/${fnamei} -s | grep ":ICPRB:" | grep -F -f ${FIXprdgen}/rrfs.ifi.sub304m.params | \
+  $wgrib2 -i ${data}/${fnamei} -GRIB ${ifi_outdir}/${fname1}
+
+  #-- sipd
+  
+  $wgrib2 ${data}/${fnamei} -s | grep ":SIPD:"  | grep -F -f ${FIXprdgen}/rrfs.ifi.sub304m.params | \
+  $wgrib2 -i ${data}/${fnamei} -GRIB ${ifi_outdir}/${fname2}
+
+  #-- icesev
+  
+  $wgrib2 ${data}/${fnamei} -s | grep ":ICESEV:"  | grep -F -f ${FIXprdgen}/rrfs.ifi.sub304m.params | \
+  # $wgrib2 ${data}/${fnamei} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${FIXprdgen}/rrfs.ifi.sub304m.params | \
+  $wgrib2 -i ${data}/${fnamei} -GRIB ${ifi_outdir}/${fname3}
+
+  #================================================================
+  #-- add WMO header
+  
+  parm_dir=${parmdir}/wmo
+
+  #-- icprb
+
+  parmfile=${parm_dir}/grib2.rrfs.ifi.icprb.${fhr}      # parm file w/ header info
+  infile=${ifi_outdir}/${fname1}
+  outfile=${wmo_outdir}/grib2.dafs.t${cyc}z.icp_${dom}.f${fhr}
+
+  export FORT11=${infile}             # input file 
+  export FORT12=                      # optional index file
+  export FORT51=${outfile}            # output file w/ headers
+
+  tocgrib2 < $parmfile 1>outfile.icprb.f${fhr}.$$
+
+  #-- sipd
+  
+  parmfile=${parm_dir}/grib2.rrfs.ifi.sipd.${fhr}      # parm file w/ header info
+  infile=${ifi_outdir}/${fname2}
+  outfile=${wmo_outdir}/grib2.dafs.t${cyc}z.sld_${dom}.f${fhr}
+
+  export FORT11=${infile}             # input file 
+  export FORT12=                      # optional index file
+  export FORT51=${outfile}            # output file w/ headers
+
+  tocgrib2 < $parmfile 1>outfile.sipd.f${fhr}.$$
+
+  #-- icesev
+
+  parmfile=${parm_dir}/grib2.rrfs.ifi.icesev.${fhr}      # parm file w/ header info
+  infile=${ifi_outdir}/${fname3}
+  outfile=${wmo_outdir}/grib2.dafs.t${cyc}z.sev_${dom}.f${fhr}
+
+  export FORT11=${infile}               # input file 
+  export FORT12=                        # optional index file
+  export FORT51=${outfile}              # output file w/ headers
+
+  tocgrib2 < $parmfile 1>outfile.icesev.f${fhr}.$$
+
