@@ -45,7 +45,12 @@ module load prod_util/2.0.8
 module list
 
 #--- specify your UPP directory
-export gitdir=/lfs/h2/emc/physics/save/hsin-mu.lin/CIRA/DAFS/sorc/UPP
+export exec_dir=`pwd`
+cd ..
+
+export dafs_main=`pwd`
+
+export gitdir=${dafs_main}/sorc/UPP
 export POSTGPEXEC=${gitdir}/exec/upp.x
 
 #--- specify forecast start time and hour for running your post job
@@ -53,8 +58,8 @@ export POSTGPEXEC=${gitdir}/exec/upp.x
 export cdate=cdate_4_cycle
 export fhr=fhr_4_cycle
 
-yyyymmdd=${cdate:0:8}
-cycle=${cdate:8:2}
+export yyyymmdd=${cdate:0:8}
+export cycle=${cdate:8:2}
 
 NEWDATE=`${NDATE} +${fhr} $cdate`
 export YY=`echo ${NEWDATE} | cut -c1-4`
@@ -63,9 +68,11 @@ export DD=`echo ${NEWDATE} | cut -c7-8`
 export HH=`echo ${NEWDATE} | cut -c9-10`
 
 #--- Input Data
-export datain=/lfs/h1/ops/prod/com/hrrr/v4.1/nwges/hrrrges_sfc/conus
+# export datain=/lfs/h1/ops/prod/com/hrrr/v4.1/nwges/hrrrges_sfc/conus
+export datain=/lfs/h2/emc/ptmp/hsin-mu.lin/hrrr_tmp/hrrr_conus_fcst_prod_${cycle}
 
 #--- model output (as input data)
+uppinx=wrfout_d01_${YY}-${MM}-${DD}_${HH}_00_00
 uppinput=hrrr_${cdate}f0${fhr}
 
 #--- Directory for All DAFS fcst
@@ -86,13 +93,16 @@ rm -rf $DATA; mkdir -p $DATA
 cd $DATA
 
 #--- Check whether input data is generated
-while [ ! -e ${datain}/${uppinput} ]; do
-  echo not seeing ${datain}/${uppinput}
+# while [ ! -e ${datain}/${uppinput} ]; do
+#   echo not seeing ${datain}/${uppinput}
+while [ ! -e ${datain}/${uppinx} ]; do
+  echo not seeing ${datain}/${uppinx}
   sleep 15
 done
 
 #--- copy model output to the working directory
-cp -rp ${datain}/${uppinput} .
+cp -rp ${datain}/${uppinx} ./${uppinput}
+# cp -rp ${datain}/${uppinput} .
 
 #--- execute main process
 
@@ -128,9 +138,17 @@ cp ${gitdir}/fix/rap_micro_lookup.dat eta_micro_lookup.dat
 
 ${APRUN} ${POSTGPEXEC} < itag > outpost_hrrr_${NEWDATE}
 
-mv IFIFIP.GrbF${fhr} dafs.t${cycle}z.ifi.conus.f0${fhr}.grib2
-mv AVIATION.GrbF${fhr} dafs.t${cycle}z.gtg.conus.f0${fhr}.grib2
+dafs_ifi=dafs.t${cycle}z.ifi.conus.f0${fhr}.grib2
+dafs_gtg=dafs.t${cycle}z.gtg.conus.f0${fhr}.grib2
+
+mv IFIFIP.GrbF${fhr} ${dafs_ifi}
+mv AVIATION.GrbF${fhr} ${dafs_gtg}
 mv dafs.t* ${DAFS_FSCT}
+
+###----- PRDGEN process and WMO header ----------------------
+
+prdgen_loc=${dafs_main}/ush/prdgen
+${prdgen_loc}/rrfs_subset_ifi_304m.sh_4_conus ${yyyymmdd} ${cycle} ${fhr} ${DAFS_FSCT} ${dafs_ifi} ${dafs_main} 
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date

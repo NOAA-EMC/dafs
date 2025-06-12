@@ -62,29 +62,43 @@ export MM=`echo ${NEWDATE} | cut -c5-6`
 export DD=`echo ${NEWDATE} | cut -c7-8`
 export HH=`echo ${NEWDATE} | cut -c9-10`
 
-#--- Input Data
+#--- Input Data location
 export datain=/lfs/h1/ops/prod/com/hrrr/v4.1/nwges/hrrrges_sfc/alaska
+
+#--- model output (as input data)
+uppinput=hrrrak_${cdate}f0${fhr}
 
 #--- Directory for All DAFS fcst
 export datadir=/lfs/h2/emc/ptmp/$USER/dafs/v1.0/dafs.${yyyymmdd}/${cycle}/upp/alaska
 # export datadir=/lfs/h1/ops/prod/com/dafs/v1.0/dafs.${yyyymmdd}/${cycle}/upp/alaska
 
-#--- Directory for IFI
-export DAFS_FSCT_IFI=${datadir}
-mkdir -p ${DAFS_FSCT_IFI}
+#--- Directory 
+export DAFS_FSCT=${datadir}
+mkdir -p ${DAFS_FSCT}
 
 #--- specify the running and output directory for each cycle
 export rundir=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
 export DATA=$rundir/hrrrak_${cdate}_f${fhr}
 
 rm -rf $DATA; mkdir -p $DATA
+
+#--- go to working directory
 cd $DATA
+
+#--- Check whether input data is generated
+while [ ! -e ${datain}/${uppinput} ]; do
+  echo not seeing ${datain}/${uppinput}
+  sleep 15
+done
+
+#--- copy model output to the working directory
+cp -rp ${datain}/${uppinput} .
 
 #--- execute main process
 
 cat > itag <<EOF
 &model_inputs
-fileName='${datain}/hrrrak_${cdate}f0${fhr}'
+fileName='${uppinput}'
 IOFORM='netcdf'
 grib='grib2'
 DateStr='${YY}-${MM}-${DD}_${HH}:00:00'
@@ -115,7 +129,7 @@ cp ${gitdir}/fix/rap_micro_lookup.dat eta_micro_lookup.dat
 ${APRUN} ${POSTGPEXEC} < itag > outpost_hrrr_${NEWDATE}
 
 mv IFIFIP.GrbF${fhr} dafs.t${cycle}z.ifi.ak.f0${fhr}.grib2
-mv dafs.t* ${DAFS_FSCT_IFI}
+mv dafs.t* ${DAFS_FSCT}
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date
