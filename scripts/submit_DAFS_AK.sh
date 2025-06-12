@@ -45,7 +45,12 @@ module load prod_util/2.0.8
 module list
 
 #--- specify your UPP directory
-export gitdir=/lfs/h2/emc/physics/save/hsin-mu.lin/CIRA/DAFS/sorc/UPP
+export exec_dir=`pwd`
+cd ..
+
+export dafs_main=`pwd`
+
+export gitdir=${dafs_main}/sorc/UPP
 export POSTGPEXEC=${gitdir}/exec/upp.x
 
 #--- specify forecast start time and hour for running your post job
@@ -53,8 +58,8 @@ export POSTGPEXEC=${gitdir}/exec/upp.x
 export cdate=cdate_4_cycle
 export fhr=fhr_4_cycle
 
-yyyymmdd=${cdate:0:8}
-cycle=${cdate:8:2}
+export yyyymmdd=${cdate:0:8}
+export cycle=${cdate:8:2}
 
 NEWDATE=`${NDATE} +${fhr} $cdate`
 export YY=`echo ${NEWDATE} | cut -c1-4`
@@ -128,8 +133,19 @@ cp ${gitdir}/fix/rap_micro_lookup.dat eta_micro_lookup.dat
 
 ${APRUN} ${POSTGPEXEC} < itag > outpost_hrrr_${NEWDATE}
 
-mv IFIFIP.GrbF${fhr} dafs.t${cycle}z.ifi.ak.f0${fhr}.grib2
-mv dafs.t* ${DAFS_FSCT}
+dafs_ifi=dafs.t${cycle}z.ifi.ak.f0${fhr}.grib2
+
+#-- remove the leading 0"
+fhrx=$(expr $fhr + 0)
+
+if [ $fhrx -gt 0 ]; then
+   mv IFIFIP.GrbF${fhr} ${DAFS_FSCT}/${dafs_ifi}
+
+###----- PRDGEN process and WMO header ----------------------
+
+   prdgen_loc=${dafs_main}/ush/prdgen
+   ${prdgen_loc}/rrfs_subset_ifi_304m.sh_4_ak ${yyyymmdd} ${cycle} ${fhrx} ${DAFS_FSCT} ${dafs_ifi} ${dafs_main}
+fi  
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date
