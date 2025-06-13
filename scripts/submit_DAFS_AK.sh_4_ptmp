@@ -130,7 +130,7 @@ cp ${gitdir}/sorc/ncep_post.fd/post_gtg.fd/gtg.input.hrrr ./gtg.input.hrrr
 
 #--- copy fix data
 
-cp ${gitdir}/../../scripts/fix/fix_2.3.0/*bin .
+cp ${dafs_main}/fix/fix_2.3.0/*bin .
 cp ${gitdir}/parm/params_grib2_tbl_new params_grib2_tbl_new
 cp ${gitdir}/parm/postxconfig-NT-hrrr_dafs.txt postxconfig-NT.txt
 cp ${gitdir}/fix/rap_micro_lookup.dat eta_micro_lookup.dat
