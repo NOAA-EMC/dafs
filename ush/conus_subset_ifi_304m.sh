@@ -37,9 +37,9 @@ mkdir -p ${COMOUT}/wmo
 #--------------------------------------------------------------- 
 #-- process WMO data
   domain="conus"
-  fname1="${RUN}.t${cyc}z.icp.13km.${domain}.f${fhr}.grib2"
-  fname2="${RUN}.t${cyc}z.sld.13km.${domain}.f${fhr}.grib2"
-  fname3="${RUN}.t${cyc}z.sev.13km.${domain}.f${fhr}.grib2"
+  fname1="${RUN}.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}.grib2"
+  fname2="${RUN}.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}.grib2"
+  fname3="${RUN}.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}.grib2"
 
   #-- ICPRB
   
@@ -66,7 +66,7 @@ mkdir -p ${COMOUT}/wmo
 
   parmfile=${parm_dir}/grib2.rrfs.ifi.icprb.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname1}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.icp.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}
 
   export FORT11=${infile}             # input file 
   export FORT12=                      # optional index file
@@ -78,7 +78,7 @@ mkdir -p ${COMOUT}/wmo
   
   parmfile=${parm_dir}/grib2.rrfs.ifi.sipd.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname2}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.sld.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}
 
   export FORT11=${infile}             # input file 
   export FORT12=                      # optional index file
@@ -90,7 +90,7 @@ mkdir -p ${COMOUT}/wmo
 
   parmfile=${parm_dir}/grib2.rrfs.ifi.icesev.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname3}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.sev.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}
 
   export FORT11=${infile}               # input file 
   export FORT12=                        # optional index file

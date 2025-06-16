@@ -16,9 +16,9 @@ domain=ak
 
 #--------------------------------------------------------------- 
 
-  fname1="${RUN}.t${cyc}z.icp.${domain}.f${fhr}.grib2"
-  fname2="${RUN}.t${cyc}z.sld.${domain}.f${fhr}.grib2"
-  fname3="${RUN}.t${cyc}z.sev.${domain}.f${fhr}.grib2"
+  fname1="${RUN}.t${cyc}z.ifi.icp.${domain}.f${fhr}.grib2"
+  fname2="${RUN}.t${cyc}z.ifi.sld.${domain}.f${fhr}.grib2"
+  fname3="${RUN}.t${cyc}z.ifi.sev.${domain}.f${fhr}.grib2"
 
   #-- ICPRB
   
@@ -45,7 +45,7 @@ domain=ak
 
   parmfile=${parm_dir}/grib2.rrfs.ifi.icprb.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname1}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.icp_${dom}.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.icp.${domain}.f${fhr}
 
   export FORT11=${infile}             # input file 
   export FORT12=                      # optional index file
@@ -57,7 +57,7 @@ domain=ak
   
   parmfile=${parm_dir}/grib2.rrfs.ifi.sipd.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname2}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.sld_${dom}.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sld.${domain}.f${fhr}
 
   export FORT11=${infile}             # input file 
   export FORT12=                      # optional index file
@@ -69,7 +69,7 @@ domain=ak
 
   parmfile=${parm_dir}/grib2.rrfs.ifi.icesev.${fhr}      # parm file w/ header info
   infile=${COMOUT}/${fname3}
-  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.sev_${dom}.f${fhr}
+  outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sev.${domain}.f${fhr}
 
   export FORT11=${infile}               # input file 
   export FORT12=                        # optional index file
