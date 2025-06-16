@@ -1,28 +1,83 @@
 #!/bin/bash 
-module load prod_util
 set -x
 
 ###########################################################################
+#  UTILITY SCRIPT NAME :  exdafs_upp_conus.sh
+#         DATE WRITTEN :  06/15/2025
 #
-# This is used for rerun by "exDAFS.sh_4_rerun_conus yyyymmddhh"
+#  Abstract:  This script runs the offline UPP based on HRRR Conus
+#             model output and creates Conus Icing grib2 file
 #
+#  History:  06/15/2025
+#               - initial version, for DAFS v1.0.0
 ###########################################################################
+POSTGRB2TBL=${POSTGRB2TBL:-"${g2tmpl_ROOT}/share/params_grib2_tbl_new"}
+APRUN=${APRUN:-"mpiexec -l -n 144 -ppn 36 --cpu-bind core --depth 2"}
 
-#--- USE for cronjob ----
+cd "${DATA}" || err_exit "FATAL ERROR: Could not 'cd ${DATA}'; ABORT!"
 
-cndate=$1
+VDATE=$(${NDATE} +${fhr} ${PDY}${cyc})
+hrrrinput="hrrr_${PDY}${cyc}f${fhr}"
+# Create the itag file
+rm -f itag
+cat >itag <<EOF
+&model_inputs
+fileName="$hrrrinput"
+IOFORM="netcdf"
+grib="grib2"
+DateStr="${VDATE:0:4}-${VDATE:4:2}-${VDATE:6:2}_${VDATE:8:2}:00:00"
+MODELNAME="RAPR"
+SUBMODELNAME="RAPR"
+/
+&NAMPGB
+KPO=47,PO=2.,5.,7.,10.,20.,30.,50.,70.,75.,100.,125.,150.,175.,200.,225.,250.,275.,300.,325.,350.,375.,400.,425.,450.,475.,500.,525.,550.,575.,600.,625.,650.,675.,700.,725.,750.,775.,800.,825.,850.,875.,900.,925.,950.,975.,1000.,1013.2,gtg_on=.true.
+/
+EOF
+cat itag
 
-cdate=$cndate
-# cdate=$(${NDATE} -1 $cndate)
+rm -f fort.*
 
-default_date="cdate_4_cycle"
-default_fhr="fhr_4_cycle"
+# Copy required inputs to local directory
+cpreq "$COMIN/$hrrrinput" .
+cpreq "${POSTGRB2TBL}" .
+cpreq "${PARMdafs}/upp/postxconfig-NT-hrrr_dafs.txt" ./postxconfig-NT.txt
+cpreq "${PARMdafs}/upp/gtg.input.hrrr" gtg.input.hrrr
+cpreq "${PARMdafs}/upp/gtg.config.hrrr" gtg.config.hrrr
 
-submit=submit_DAFS_CONUS.sh
 
-for (( ifhr=0; ifhr<=18; ifhr++ )); do
-  fhr=$(printf "%02d" $ifhr)
-  sed "s/${default_date}/$cdate/" ${submit} > ${submit}-${cdate}_f${fhr} 
-  sed  -i "s/${default_fhr}/${fhr}/" ${submit}-${cdate}_f${fhr}
-  qsub ${submit}-${cdate}_f${fhr}
-done
+# output file from UPP executable
+
+fhr2d=$(printf "%02d" $((10#${fhr})))
+export PGBOUTifi="IFIFIP.GrbF${fhr2d}"
+export PGBOUTgtg="AVIATION.GrbF${fhr2d}"
+export pgm="dafs_upp.x"
+
+# Clean out any existing output files
+. prep_step
+
+${APRUN} ${EXECdafs}/${pgm} <itag >>${pgmout} 2>errfile
+export err=$?
+err_chk
+
+# Check if UPP succeeded in creating the master file
+if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}"] ; then
+    err_exit "FATAL ERROR: UPP failed to create '${PGBOUTifi} or ${PGBOUTgtg}', ABORT!"
+fi
+
+# Copy dafs IFI file to COMOUT and index the file
+dafs_ifi="${RUN}.t${cyc}z.ifi.conus.f${fhr}.grib2"
+dafs_gtg="${RUN}.t${cyc}z.gtg.conus.f${fhr}.grib2"
+
+if [[ "${SENDCOM}" == "YES" ]]; then    
+    cpfs "${PGBOUTifi}" "${COMOUT}/${dafs_ifi}"
+    cpfs "${PGBOUTgtg}" "${COMOUT}/${dafs_gtg}"
+    ${WGRIB2} -s "${PGBOUTifi}" >"${COMOUT}/${dafs_ifi}.idx"
+    ${WGRIB2} -s "${PGBOUTgtg}" >"${COMOUT}/${dafs_gtg}.idx"
+fi
+
+###----- PRDGEN process and WMO header ----------------------
+fhrx=$(expr $fhr + 0) #remove the leading 0
+$USHdafs/conus_subset_ifi_304m.sh ${dafs_ifi} ${dafs_gtg}
+
+echo "PROGRAM IS COMPLETE!!!!!"
+date

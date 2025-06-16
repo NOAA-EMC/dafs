@@ -1,0 +1,106 @@
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -j oe
+#PBS -N DAFS_ak
+#PBS -l walltime=00:10:00
+#PBS -q debug
+#PBS -A GFS-DEV
+#PBS -l place=vscatter,select=4:ncpus=72
+##PBS -V
+#PBS -l debug=true
+
+cd $PBS_O_WORKDIR
+
+set -x
+
+# specify computation resource
+export threads=1
+export MP_LABELIO=yes
+export OMP_NUM_THREADS=$threads
+export APRUN="mpiexec -l -n 144 -ppn 36 --cpu-bind core --depth 2"
+# export APRUN="mpiexec -l -n 48 -ppn 24"
+
+# keep proceeses off hyperthread cores
+export OMP_PROC_BIND=true
+
+
+echo "starting time $PBS_JOBNAME"
+date
+
+
+############################################
+# Set up the HOME directory
+############################################
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/$USER/git
+export HOMEdafs=${HOMEdafs:-${NWROOT}/dafs.fork}
+
+# specify user's own post working directory for testing
+export EXECdafs=$HOMEdafs/exec
+
+############################################
+# Loading module
+############################################
+source $HOMEdafs/versions/run.ver
+module reset
+source $HOMEdafs/dev/modulefiles/upp.sh
+
+module list
+
+############################################
+# Modify ROOT after loading modules
+############################################
+export DBNROOT=${UTILROOT}/fakedbn
+
+############################################
+# Define envir
+############################################
+export envir=prod
+
+############################################
+# set NET RUN
+############################################
+export NET=dafs
+export RUN=dafs
+
+############################################
+# user defined
+############################################
+export cyc=${cyc:-00}
+export cycle=t${cyc}z
+export fhr=006
+export PDY=$(cut -c 7-14 $COMROOT/date/t${cyc}z)
+
+export job=dafs_upp_alaska_${cyc}
+
+export pid=${pid:-$$}
+export jobid=${job}.${pid}
+
+USER=$(whoami)
+
+############################################
+# SENDCOM=YES--Copy output file to /com
+# SENDDBN=YES--Alert output file to TOC
+# KEEPDATA=NO--Remove temporary working
+############################################
+export SENDCOM=YES
+export SENDDBN=NO
+
+export KEEPDATA=YES
+
+############################################
+# Define DATA, COMOUT and COMIN
+############################################
+
+export COMROOT=/lfs/h2/emc/ptmp/$USER/dafs/$envir/com
+export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/v4.1/nwges/hrrrges_sfc/alaska}
+
+DATAroot=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
+
+############################################
+# run the job
+#############################################
+export DATA=$DATAroot/hrrrak_${PDY}${cyc}_f${fhr}
+
+$HOMEdafs/jobs/JDAFS_UPP_ALASKA
+echo $?
