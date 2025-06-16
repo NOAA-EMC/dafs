@@ -50,6 +50,7 @@ export pgmout="OUTPUT.$$"
 ####################################
 export EXECdafs="${HOMEdafs}/exec"
 export PARMdafs="${HOMEdafs}/parm"
+export FIXdafs="${HOMEdafs}/fix"
 export USHdafs="${HOMEdafs}/ush"
 
 #########################################################

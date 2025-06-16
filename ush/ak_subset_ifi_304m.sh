@@ -22,17 +22,17 @@ domain=ak
 
   #-- ICPRB
   
-  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":ICPRB:" | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":ICPRB:" | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname1}
 
   #-- sipd
   
-  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":SIPD:"  | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":SIPD:"  | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname2}
 
   #-- icesev
   
-  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   # $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname3}
 

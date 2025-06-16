@@ -30,7 +30,7 @@ mkdir -p ${COMOUT}/wmo
 #-- GTG --
   $WGRIB2 ${COMOUT}/${dafs_gtg} -set_bitmap 1 -set_grib_type c3 \
      -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
-     -new_grid_interpolation neighbor \
+     -new_grid_interpolation bilinear \
      -new_grid ${grid_specs_130} ${COMOUT}/${g130file_gtg}
   
   
@@ -43,18 +43,18 @@ mkdir -p ${COMOUT}/wmo
 
   #-- ICPRB
   
-  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":ICPRB:" | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":ICPRB:" | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname1}
 
   #-- sipd
   
-  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":SIPD:"  | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":SIPD:"  | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname2}
 
   #-- icesev
   
-  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
-  # $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${PARMdafs}/rrfs.ifi.sub304m.params | \
+  $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
+  # $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${FIXdafs}/prdgen/rrfs.ifi.sub304m.params | \
   $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname3}
 
   #================================================================
