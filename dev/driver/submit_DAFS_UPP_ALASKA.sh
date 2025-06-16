@@ -13,7 +13,7 @@ cd $tmpdir
 jobcard=run_DAFS_UPP_ALASKA
 cp "${DIR_ROOT}/dev/driver/${jobcard}" .
 
-for (( ifhr=8; ifhr<=9; ifhr++ )); do
+for (( ifhr=1; ifhr<=18; ifhr++ )); do
   fhr=$(printf "%03d" $ifhr)
   sed -e "s|HOMEdafs=.*|HOMEdafs=$DIR_ROOT|g" \
   -e "s|PDY=.*|PDY=${PDYcyc:0:8}|g" \

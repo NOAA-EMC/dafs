@@ -93,7 +93,10 @@ export KEEPDATA=YES
 ############################################
 
 export COMROOT=/lfs/h2/emc/ptmp/$USER/dafs/$envir/com
-export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/v4.1/nwges/hrrrges_sfc/conus}
+
+export COMPATH=/lfs/h1/ops/prod/com/hrrr/v4.1
+export COMPATH=/lfs/h2/emc/ptmp/$USER/hrrr_tmp
+export COMIN=${COMIN:-${COMPATH}/nwges/hrrrges_sfc/conus}
 
 DATAroot=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
 
