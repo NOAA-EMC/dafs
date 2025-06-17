@@ -9,6 +9,7 @@ cd "${DIR_ROOT}"
 
 # Checkout upp and gtg code
 git -c submodule."post_gtg.fd".update=checkout submodule update --init --recursive
+git -c submodule."sorc/libIFI.fd".update=checkout submodule update --init --recursive
 
 # upp:
 cd "${DIR_ROOT}/sorc/dafs_upp.fd"
