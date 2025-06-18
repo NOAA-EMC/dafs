@@ -18,7 +18,7 @@ cdate=$cndate
 default_date="cdate_4_cycle"
 default_fhr="fhr_4_cycle"
 
-submit=submit_DAFS_CONUS.sh_4_ptmp
+submit=submit_DAFS_CONUS.sh
 
 for (( ifhr=0; ifhr<=18; ifhr++ )); do
   fhr=$(printf "%02d" $ifhr)
