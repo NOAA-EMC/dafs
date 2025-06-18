@@ -8,7 +8,7 @@ PDYcyc=${1}
 export cyc=`echo ${PDYcyc} | cut -c9-10`
 
 sourceroot=/lfs/h2/emc/ptmp/hsin-mu.lin/hrrr_tmp
-targetroot=/lfs/h2/emc/ptmp/yali.mao/hrrr_tmp/nwges/hrrrges_sfc
+targetroot=/lfs/h2/emc/ptmp/${USER}/hrrr_tmp/nwges/hrrrges_sfc
 rm -rf $targetroot
 
 # alaska
