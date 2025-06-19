@@ -64,13 +64,15 @@ if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}"] ; then
     err_exit "FATAL ERROR: UPP failed to create '${PGBOUTifi} or ${PGBOUTgtg}', ABORT!"
 fi
 
-# Copy dafs IFI file to COMOUT and index the file
-dafs_ifi="${RUN}.t${cyc}z.ifi.conus.f${fhr}.grib2"
-dafs_gtg="${RUN}.t${cyc}z.gtg.conus.f${fhr}.grib2"
+# Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
+dafs_ifi="${RUN}.t${cyc}z.ifi.3km.conus.f${fhr}.grib2"
+dafs_gtg="${RUN}.t${cyc}z.gtg.3km.conus.f${fhr}.grib2"
 
-if [[ "${SENDCOM}" == "YES" ]]; then    
-    cpfs "${PGBOUTifi}" "${COMOUT}/${dafs_ifi}"
-    cpfs "${PGBOUTgtg}" "${COMOUT}/${dafs_gtg}"
+if [[ "${SENDCOM}" == "YES" ]]; then
+    ${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${COMOUT}/${dafs_ifi}
+    ${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${COMOUT}/${dafs_gtg}
+    # cpfs "${PGBOUTifi}" "${COMOUT}/${dafs_ifi}"
+    # cpfs "${PGBOUTgtg}" "${COMOUT}/${dafs_gtg}"
     ${WGRIB2} -s "${PGBOUTifi}" >"${COMOUT}/${dafs_ifi}.idx"
     ${WGRIB2} -s "${PGBOUTgtg}" >"${COMOUT}/${dafs_gtg}.idx"
 fi
