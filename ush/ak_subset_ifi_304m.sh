@@ -23,18 +23,21 @@ domain=ak
   #-- ICPRB
   
   $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":ICPRB:" | grep -F -f ${FIXdafs}/prdgen/dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname1}
+  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${fname1}
+  # $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname1}
 
   #-- sipd
   
   $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":SIPD:"  | grep -F -f ${FIXdafs}/prdgen/dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname2}
+  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${fname2}
+  # $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname2}
 
   #-- icesev
   
   $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f ${FIXdafs}/prdgen/dafs.ifi.sub304m.params | \
   # $WGRIB2 ${COMOUT}/${dafs_ifi} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${PARMdafs}/dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname3}
+  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${fname3}
+  # $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname3}
 
   #================================================================
   #-- add WMO header only at certain forcast hour
@@ -49,7 +52,8 @@ domain=ak
      #-- icprb
 
      parmfile=${parm_dir}/grib2.dafs.ifi.icprb.${fhr}      # parm file w/ header info
-     infile=${COMOUT}/${fname1}
+     infile=${fname1}
+     # infile=${COMOUT}/${fname1}
      outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.icp.3km.${domain}.f${fhr}
 
      export FORT11=${infile}             # input file 
@@ -61,7 +65,8 @@ domain=ak
      #-- sipd
   
      parmfile=${parm_dir}/grib2.dafs.ifi.sipd.${fhr}      # parm file w/ header info
-     infile=${COMOUT}/${fname2}
+     infile=${fname2}
+     # infile=${COMOUT}/${fname2}
      outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sld.3km.${domain}.f${fhr}
 
      export FORT11=${infile}             # input file 
@@ -73,7 +78,8 @@ domain=ak
      #-- icesev
 
      parmfile=${parm_dir}/grib2.dafs.ifi.icesev.${fhr}      # parm file w/ header info
-     infile=${COMOUT}/${fname3}
+     infile=${fname3}
+     # infile=${COMOUT}/${fname3}
      outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.sev.3km.${domain}.f${fhr}
 
      export FORT11=${infile}               # input file 
