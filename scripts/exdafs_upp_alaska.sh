@@ -63,10 +63,11 @@ if [[ ! -f "${PGBOUT}" ]]; then
     err_exit "FATAL ERROR: UPP failed to create '${PGBOUT}', ABORT!"
 fi
 
-# Copy dafs IFI file to COMOUT and index the file
-dafs_ifi="${RUN}.t${cyc}z.ifi.ak.f${fhr}.grib2"
+# Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
+dafs_ifi="${RUN}.t${cyc}z.ifi.3km.ak.f${fhr}.grib2"
 if [[ "${SENDCOM}" == "YES" ]]; then
-    cpfs "${PGBOUT}" "${COMOUT}/${dafs_ifi}"
+    ${WGRIB2} -set subcenter 8 ${PGBOUT} -grib ${COMOUT}/${dafs_ifi} 
+    #  cpfs "${PGBOUT}" "${COMOUT}/${dafs_ifi}"
     ${WGRIB2} -s "${PGBOUT}" >"${COMOUT}/${dafs_ifi}.idx"
 fi
 
