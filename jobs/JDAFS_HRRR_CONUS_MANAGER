@@ -1,0 +1,62 @@
+#!/bin/bash
+########################################
+# DAFS HRRR MANAGER
+########################################
+
+date
+export PS4='$SECONDS + '
+set -x
+
+####################################
+# make temp directory
+####################################
+export DATA=${DATA:-${DATAROOT}/${jobid:?}}
+mkdir -p "${DATA}" && cd "${DATA}"
+
+###########################################
+# Run setpdy and initialize PDY variables
+###########################################
+export cycle=${cycle:-"t${cyc}z"}
+setpdy.sh
+. ./PDY
+
+####################################
+# Specify NET and RUN Name and model
+####################################
+export NET=${NET:-dafs}
+export RUN=${RUN:-dafs}
+
+##############################################
+# Define COM directories
+###############################################
+export COMINhrrr=${COMINhrrr:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/conus}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export pgmout="OUTPUT.$$"
+
+#########################################################
+# print current environment
+#########################################################
+env
+
+############################################
+# Execute the script.
+############################################
+"${HOMEdafs}/scripts/exdafs_hrrr_conus_manager.sh"
+export err=$?
+err_chk
+
+if [[ -e "${pgmout}" ]]; then
+  cat "${pgmout}"
+fi
+
+##############################
+# Remove the Temporary working directory
+##############################
+if [[ "${KEEPDATA^^}" != "YES" ]]; then
+  rm -rf "${DATA}"
+fi
+
+date
