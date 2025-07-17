@@ -1,0 +1,68 @@
+#PBS -S /bin/bash
+#PBS -N %RUN%_hrrr_manager_%CYC%%VER:%
+#PBS -j oe
+#PBS -q %QUEUE%
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l walltime=03:00:00
+#PBS -l select=1:ncpus=1
+#PBS -l debug=true
+
+export model=dafs
+
+%include <head.h>
+%include <envir-p1.h>
+
+set -x
+
+export NET=%NET%
+export RUN=%RUN%
+export cyc=%CYC%
+
+############################################################
+# Load modules
+############################################################
+set +x
+module list
+set -x
+
+############################################################
+# CALL executable job script
+############################################################
+
+#-- CONUS
+${HOMEdafs}/jobs/JDAFS_HRRR_CONUS_MANAGER
+
+if [ $? -ne 0 ]; then
+   ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
+   ecflow_client --abort
+   exit
+fi
+
+%include <tail.h>
+%manual
+TASK: JDAFS_HRRR_CONUS_MANAGER
+
+#-- ALASKA
+${HOMEdafs}/jobs/JDAFS_HRRR_ALASKA_MANAGER
+
+if [ $? -ne 0 ]; then
+   ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
+   ecflow_client --abort
+   exit
+fi
+
+%include <tail.h>
+%manual
+TASK: JDAFS_HRRR_ALASKA_MANAGER
+
+
+PURPOSE: Look for HRRR forecast model output and trigger the following jobs:
+  JDAFS_UPP: Offline UPP with GTG & IFI
+
+This job will look for HRRR forecast model output, and trigger the above jobs for each of the forecast hour that the products are desired.
+The job will timeout in 10800 seconds (3 hours) if the forecast model output is not available.
+The job will skip any intermediate forecast hour if the forecast model output is not available for that forecast hour
+
+TROUBLESHOOTING
+If this job fails, re-queuing the job is probably not the best idea as it may release the triggers for already launched/completed downstream jobs.  In that case, it is perhaps better to boot the downstream jobs mentioned in the purpose for the failed forecast hours.
+%end

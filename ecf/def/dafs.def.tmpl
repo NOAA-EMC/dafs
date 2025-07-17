@@ -1,0 +1,114 @@
+suite dafs@EXPID@
+  edit MACHINE_SITE '@MACHINE_SITE@'
+  edit USER '@USER@'
+  edit dafs_ver '@MODELVER@'
+  edit PACKAGEHOME '@PACKAGEROOT@/dafs.%dafs_ver%'
+  edit ECF_INCLUDE '@PACKAGEROOT@/dafs.@MODELVER@/ecf/include'
+  edit ECF_FILES '%PACKAGEHOME%/ecf'
+  edit ENVIR 'prod'
+  edit QUEUE 'dev'
+  edit QUEUE_ARCH 'dev_transfer'
+  edit PROJENVIR 'DEV'
+  edit PROJ 'HRRR'  # TODO: Change to 'DAFS' when ready
+  edit PDY '@PDY@'
+  edit PARATEST 'NO'
+  edit SENDDBN 'NO'
+  edit SENDDBN_NTC 'NO'
+  edit SENDCANNEDDBN 'NO'
+  edit KEEPDATA 'NO'
+  edit RUN_ENVIR 'dev'
+  edit COMROOT '/lfs/h2/emc/ptmp/%USER%/dafs@EXPID@/%ENVIR%/com'
+  edit DATAROOT '/lfs/h2/emc/stmp/%USER%/dafs@EXPID@/tmp'
+  edit OUTPUTDIR '/lfs/h2/emc/stmp/%USER%/dafs@EXPID@/output'
+  edit COMPATH '%COMROOT%/dafs'
+  family primary
+    family dafs
+      edit NET 'dafs'
+      edit RUN 'dafs'
+      family @MODELVER@
+        family @CYC@
+          edit CYC '@CYC@'
+          task jdafs_hrrr_manager
+            event 1 release_dafs_upp_000  # upp
+            event 2 release_dafs_upp_001
+            event 3 release_dafs_upp_002
+            event 4 release_dafs_upp_003
+            event 5 release_dafs_upp_004
+            event 6 release_dafs_upp_005
+            event 7 release_dafs_upp_006
+            event 8 release_dafs_upp_007
+            event 9 release_dafs_upp_008
+            event 10 release_dafs_upp_009
+            event 11 release_dafs_upp_010
+            event 12 release_dafs_upp_011
+            event 13 release_dafs_upp_012
+            event 14 release_dafs_upp_013
+            event 15 release_dafs_upp_014
+            event 16 release_dafs_upp_015
+            event 17 release_dafs_upp_016
+            event 18 release_dafs_upp_017
+            event 19 release_dafs_upp_018
+          family upp
+            task jdafs_upp_f000
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
+              edit FHR 000
+            task jdafs_upp_f001
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
+              edit FHR 001
+            task jdafs_upp_f002
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
+              edit FHR 002
+            task jdafs_upp_f003
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
+              edit FHR 003
+            task jdafs_upp_f004
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
+              edit FHR 004
+            task jdafs_upp_f005
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
+              edit FHR 005
+            task jdafs_upp_f006
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
+              edit FHR 006
+            task jdafs_upp_f007
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
+              edit FHR 007
+            task jdafs_upp_f008
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
+              edit FHR 008
+            task jdafs_upp_f009
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
+              edit FHR 009
+            task jdafs_upp_f010
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
+              edit FHR 010
+            task jdafs_upp_f011
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
+              edit FHR 011
+            task jdafs_upp_f012
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
+              edit FHR 012
+            task jdafs_upp_f013
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
+              edit FHR 013
+            task jdafs_upp_f014
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
+              edit FHR 014
+            task jdafs_upp_f015
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
+              edit FHR 015
+            task jdafs_upp_f016
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
+              edit FHR 016
+            task jdafs_upp_f017
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
+              edit FHR 017
+            task jdafs_upp_f018
+              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
+              edit FHR 018
+          endfamily  # endfamily upp
+        endfamily  # endfamily @CYC@
+      endfamily  # endfamily @MODELVER@
+    endfamily  # endfamily dafs
+  endfamily  # endfamily primary
+endsuite  # endsuite dafs@EXPID@
