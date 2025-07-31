@@ -36,8 +36,8 @@ export RUN=${RUN:-dafs}
 ##############################################
 # Define COM directories
 ##############################################
-export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/conus}
-export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/${RUN}.${PDY}/${cyc}/upp/conus"}
+export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}}
+export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/${RUN}.${PDY}/${cyc}/${dom}/upp"}
 mkdir -p "${COMOUT}"
 
 ####################################
@@ -64,7 +64,7 @@ env
 # Run UPP with 1 thread
 export OMP_NUM_THREADS=1
 
-"${HOMEdafs}/scripts/exdafs_upp_conus.sh"
+"${HOMEdafs}/scripts/exdafs_${dom}_upp.sh"
 export err=$?
 err_chk
 

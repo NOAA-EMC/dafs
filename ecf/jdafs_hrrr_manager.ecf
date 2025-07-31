@@ -18,6 +18,8 @@ export NET=%NET%
 export RUN=%RUN%
 export cyc=%CYC%
 
+export dom=%DOMAIN%
+
 ############################################################
 # Load modules
 ############################################################
@@ -28,9 +30,7 @@ set -x
 ############################################################
 # CALL executable job script
 ############################################################
-
-#-- CONUS
-${HOMEdafs}/jobs/JDAFS_HRRR_CONUS_MANAGER
+${HOMEdafs}/jobs/JDAFS_HRRR_MANAGER
 
 if [ $? -ne 0 ]; then
    ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
@@ -40,20 +40,7 @@ fi
 
 %include <tail.h>
 %manual
-TASK: JDAFS_HRRR_CONUS_MANAGER
-
-#-- ALASKA
-${HOMEdafs}/jobs/JDAFS_HRRR_ALASKA_MANAGER
-
-if [ $? -ne 0 ]; then
-   ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
-   ecflow_client --abort
-   exit
-fi
-
-%include <tail.h>
-%manual
-TASK: JDAFS_HRRR_ALASKA_MANAGER
+TASK: JDAFS_HRRR_MANAGER
 
 
 PURPOSE: Look for HRRR forecast model output and trigger the following jobs:
