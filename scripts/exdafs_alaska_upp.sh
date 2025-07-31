@@ -12,7 +12,7 @@ set -x
 #               - initial version, for DAFS v1.0.0
 ###########################################################################
 POSTGRB2TBL=${POSTGRB2TBL:-"${g2tmpl_ROOT}/share/params_grib2_tbl_new"}
-APRUN=${APRUN:-"mpiexec -l -n 144 -ppn 36 --cpu-bind core --depth 2"}
+APRUN=${APRUN:-"mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"}
 
 cd "${DATA}" || err_exit "FATAL ERROR: Could not 'cd ${DATA}'; ABORT!"
 
