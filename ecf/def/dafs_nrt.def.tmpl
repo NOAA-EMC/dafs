@@ -12,7 +12,7 @@ suite dafs@EXPID@
     edit RUN 'dafs'
     edit QUEUE_ARCH 'dev_transfer'
     edit PROJENVIR 'DEV'
-    edit PROJ 'GFS'  # TODO: Change to 'DAFS' when ready
+    edit PROJ 'DAFS'
     edit PARATEST 'NO'
     edit SENDDBN 'NO'
     edit SENDDBN_NTC 'NO'
@@ -20,1699 +20,2628 @@ suite dafs@EXPID@
     edit KEEPDATA 'NO'
     edit RUN_ENVIR 'dev'
     edit COMROOT '/lfs/h2/emc/ptmp/%USER%/dafs@EXPID@/%ENVIR%/com'
-    edit DATAROOT '/lfs/h2/emc/stmp/%USER%/dafs@EXPID@/tmp'
-    edit OUTPUTDIR '/lfs/h2/emc/stmp/%USER%/dafs@EXPID@/output'
+    edit DATAROOT '/lfs/h2/emc/ptmp/%USER%/dafs@EXPID@/tmp'
+    edit OUTPUTDIR '/lfs/h2/emc/ptmp/%USER%/dafs@EXPID@/output'
     edit COMPATH '%COMROOT%/dafs'
-    family 00
-      edit CYC '00'
-      task cycle_end
-        cron 23:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-	    time 03:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily @MODELVER@
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 00
-    family 01
-      edit CYC '01'
-      task cycle_end
-        cron 05:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 09:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 01
-    family 02
-      edit CYC '02'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-	    time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012 
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 02
-    family 03
-      edit CYC '03'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 03
-    family  04
-      edit CYC '04'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 04
-    family 05
-      edit CYC '05'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 05
-    family 06
-      edit CYC '06'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 06
-    family 07
-      edit CYC '07'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 07
-    family 08
-      edit CYC '08'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 08
-    family 09
-      edit CYC '09'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 09
-    family 10
-      edit CYC '10'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 10
-    family 11
-      edit CYC '11'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 11
-    family 12
-      edit CYC '12'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 12
-    family 13
-      edit CYC '13'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 13
-    family 14
-      edit CYC '14'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 14
-    family 15
-      edit CYC '15'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 15
-    family 16
-      edit CYC '16'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 16
-    family 17
-      edit CYC '17'
-      task cycle_end
-        cron 11:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-            time 15:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily MODELVER
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 17
-    family 18
-      edit CYC '18'
-      task cycle_end
-        cron 17:05
-      family dafs
-        family @MODELVER@
-          task jdafs_hrrr_manager
-            event 1 release_dafs_upp_000  # upp
-            event 2 release_dafs_upp_001
-            event 3 release_dafs_upp_002
-            event 4 release_dafs_upp_003
-            event 5 release_dafs_upp_004
-            event 6 release_dafs_upp_005
-            event 7 release_dafs_upp_006
-            event 8 release_dafs_upp_007
-            event 9 release_dafs_upp_008
-            event 10 release_dafs_upp_009
-            event 11 release_dafs_upp_010
-            event 12 release_dafs_upp_011
-            event 13 release_dafs_upp_012
-            event 14 release_dafs_upp_013
-            event 15 release_dafs_upp_014
-            event 16 release_dafs_upp_015
-            event 17 release_dafs_upp_016
-            event 18 release_dafs_upp_017
-            event 19 release_dafs_upp_018
-	    time 21:35
-          family upp
-            task jdafs_upp_f000
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_000
-              edit FHR 000
-            task jdafs_upp_f001
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_001
-              edit FHR 001
-            task jdafs_upp_f002
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_002
-              edit FHR 002
-            task jdafs_upp_f003
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_003
-              edit FHR 003
-            task jdafs_upp_f004
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_004
-              edit FHR 004
-            task jdafs_upp_f005
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_005
-              edit FHR 005
-            task jdafs_upp_f006
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_006
-              edit FHR 006
-            task jdafs_upp_f007
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_007
-              edit FHR 007
-            task jdafs_upp_f008
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_008
-              edit FHR 008
-            task jdafs_upp_f009
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_009
-              edit FHR 009
-            task jdafs_upp_f010
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_010
-              edit FHR 010
-            task jdafs_upp_f011
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_011
-              edit FHR 011
-            task jdafs_upp_f012
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_012
-              edit FHR 012 
-            task jdafs_upp_f013
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_013
-              edit FHR 013
-            task jdafs_upp_f014
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_014
-              edit FHR 014
-            task jdafs_upp_f015
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_015
-              edit FHR 015
-            task jdafs_upp_f016
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_016
-              edit FHR 016
-            task jdafs_upp_f017
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_017
-              edit FHR 017
-            task jdafs_upp_f018
-              trigger ../jdafs_hrrr_manager:release_dafs_upp_018
-              edit FHR 018
-          endfamily  # endfamily upp
-        endfamily  # endfamily @MODELVER@
-      endfamily  # endfamily dafs
-    endfamily  # endfamily 18
+    family dafs
+      family @MODELVER@
+        family 00
+          edit CYC '00'
+          task cycle_end
+            cron 00:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 00
+        family 01
+          edit CYC '01'
+          task cycle_end
+            cron 01:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 01
+        family 02
+          edit CYC '02'
+          task cycle_end
+            cron 02:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 02
+        family 03
+          edit CYC '03'
+          task cycle_end
+            cron 03:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 03
+        family 04
+          edit CYC '04'
+          task cycle_end
+            cron 04:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 04
+        family 05
+          edit CYC '05'
+          task cycle_end
+            cron 05:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 05
+        family 06
+          edit CYC '06'
+          task cycle_end
+            cron 06:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 06
+        family 07
+          edit CYC '07'
+          task cycle_end
+            cron 07:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 07
+        family 08
+          edit CYC '08'
+          task cycle_end
+            cron 08:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 08
+        family 09
+          edit CYC '09'
+          task cycle_end
+            cron 09:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 09
+        family 10
+          edit CYC '10'
+          task cycle_end
+            cron 10:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 10
+        family 11
+          edit CYC '11'
+          task cycle_end
+            cron 11:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 11
+        family 12
+          edit CYC '12'
+          task cycle_end
+            cron 12:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 12
+        family 13
+          edit CYC '13'
+          task cycle_end
+            cron 13:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 13
+        family 14
+          edit CYC '14'
+          task cycle_end
+            cron 14:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 14
+        family 15
+          edit CYC '15'
+          task cycle_end
+            cron 15:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 15
+        family 16
+          edit CYC '16'
+          task cycle_end
+            cron 16:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 16
+        family 17
+          edit CYC '17'
+          task cycle_end
+            cron 17:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 17
+        family 18
+          edit CYC '18'
+          task cycle_end
+            cron 18:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 18
+        family 19
+          edit CYC '19'
+          task cycle_end
+            cron 19:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 19
+        family 20
+          edit CYC '20'
+          task cycle_end
+            cron 20:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 20
+        family 21
+          edit CYC '21'
+          task cycle_end
+            cron 21:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+	  family alaska
+	    edit DOMAIN 'alaska'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_alaska_upp_001  # upp
+              event 2 release_dafs_alaska_upp_002
+              event 3 release_dafs_alaska_upp_003
+              event 4 release_dafs_alaska_upp_004
+              event 5 release_dafs_alaska_upp_005
+              event 6 release_dafs_alaska_upp_006
+              event 7 release_dafs_alaska_upp_007
+              event 8 release_dafs_alaska_upp_008
+              event 9 release_dafs_alaska_upp_009
+              event 10 release_dafs_alaska_upp_010
+              event 11 release_dafs_alaska_upp_011
+              event 12 release_dafs_alaska_upp_012
+              event 13 release_dafs_alaska_upp_013
+              event 14 release_dafs_alaska_upp_014
+              event 15 release_dafs_alaska_upp_015
+              event 16 release_dafs_alaska_upp_016
+              event 17 release_dafs_alaska_upp_017
+              event 18 release_dafs_alaska_upp_018
+            family upp
+              task jdafs_alaska_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_001
+                edit FHR 001
+              task jdafs_alaska_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_002
+                edit FHR 002
+              task jdafs_alaska_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_003
+                edit FHR 003
+              task jdafs_alaska_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_004
+                edit FHR 004
+              task jdafs_alaska_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_005
+                edit FHR 005
+              task jdafs_alaska_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_006
+                edit FHR 006
+              task jdafs_alaska_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_007
+                edit FHR 007
+              task jdafs_alaska_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_008
+                edit FHR 008
+              task jdafs_alaska_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_009
+                edit FHR 009
+              task jdafs_alaska_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_010
+                edit FHR 010
+              task jdafs_alaska_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_011
+                edit FHR 011
+              task jdafs_alaska_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_012
+                edit FHR 012
+              task jdafs_alaska_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_013
+                edit FHR 013
+              task jdafs_alaska_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_014
+                edit FHR 014
+              task jdafs_alaska_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_015
+                edit FHR 015
+              task jdafs_alaska_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_016
+                edit FHR 016
+              task jdafs_alaska_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_017
+                edit FHR 017
+              task jdafs_alaska_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_alaska_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily alaska
+        endfamily  # endfamily 21
+        family 22
+          edit CYC '22'
+          task cycle_end
+            cron 22:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 22
+        family 23
+          edit CYC '23'
+          task cycle_end
+            cron 23:45
+	  family conus
+	    edit DOMAIN 'conus'
+            task jdafs_hrrr_manager
+              event 1 release_dafs_conus_upp_001  # upp
+              event 2 release_dafs_conus_upp_002
+              event 3 release_dafs_conus_upp_003
+              event 4 release_dafs_conus_upp_004
+              event 5 release_dafs_conus_upp_005
+              event 6 release_dafs_conus_upp_006
+              event 7 release_dafs_conus_upp_007
+              event 8 release_dafs_conus_upp_008
+              event 9 release_dafs_conus_upp_009
+              event 10 release_dafs_conus_upp_010
+              event 11 release_dafs_conus_upp_011
+              event 12 release_dafs_conus_upp_012
+              event 13 release_dafs_conus_upp_013
+              event 14 release_dafs_conus_upp_014
+              event 15 release_dafs_conus_upp_015
+              event 16 release_dafs_conus_upp_016
+              event 17 release_dafs_conus_upp_017
+              event 18 release_dafs_conus_upp_018
+            family upp
+              task jdafs_conus_upp_f001
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_001
+                edit FHR 001
+              task jdafs_conus_upp_f002
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_002
+                edit FHR 002
+              task jdafs_conus_upp_f003
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_003
+                edit FHR 003
+              task jdafs_conus_upp_f004
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_004
+                edit FHR 004
+              task jdafs_conus_upp_f005
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_005
+                edit FHR 005
+              task jdafs_conus_upp_f006
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_006
+                edit FHR 006
+              task jdafs_conus_upp_f007
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_007
+                edit FHR 007
+              task jdafs_conus_upp_f008
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_008
+                edit FHR 008
+              task jdafs_conus_upp_f009
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_009
+                edit FHR 009
+              task jdafs_conus_upp_f010
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_010
+                edit FHR 010
+              task jdafs_conus_upp_f011
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_011
+                edit FHR 011
+              task jdafs_conus_upp_f012
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_012
+                edit FHR 012
+              task jdafs_conus_upp_f013
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_013
+                edit FHR 013
+              task jdafs_conus_upp_f014
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_014
+                edit FHR 014
+              task jdafs_conus_upp_f015
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_015
+                edit FHR 015
+              task jdafs_conus_upp_f016
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_016
+                edit FHR 016
+              task jdafs_conus_upp_f017
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_017
+                edit FHR 017
+              task jdafs_conus_upp_f018
+                trigger ../jdafs_hrrr_manager:release_dafs_conus_upp_018
+                edit FHR 018
+            endfamily  # endfamily upp
+          endfamily  # endfamily conus
+        endfamily  # endfamily 23
+      endfamily  # endfamily @MODELVER@
+    endfamily  # endfamily dafs
   endfamily  # endfamily primary
 endsuite  # endsuite dafs@EXPID@
