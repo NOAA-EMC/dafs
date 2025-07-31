@@ -3,8 +3,8 @@
 #PBS -j oe
 #PBS -q %QUEUE%
 #PBS -A %PROJ%-%PROJENVIR%
-#PBS -l walltime=00:15:00
-#PBS -l select=1:mpiprocs=126:ompthreads=1:ncpus=126
+#PBS -l walltime=00:10:00
+#PBS -l place=vscatter,select=4:ncpus=24
 #PBS -l place=vscatter:exclhost
 #PBS -l debug=true
 
@@ -19,6 +19,8 @@ export NET=%NET%
 export RUN=%RUN%
 export cyc=%CYC%
 export fhr=%FHR%
+
+export dom=%DOMAIN%
 
 ############################################################
 # Load modules
@@ -47,7 +49,7 @@ set -x
 ############################################################
 # CALL executable job script here
 ############################################################
-${HOMEdafs}/jobs/JDAFS_UPP_ALASKA
+${HOMEdafs}/jobs/JDAFS_UPP
 if [ $? -ne 0 ]; then
    ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
    ecflow_client --abort
@@ -56,7 +58,7 @@ fi
 
 %include <tail.h>
 %manual
-TASK: JDAFS_UPP_ALASKA
+TASK: JDAFS_UPP
 
 PURPOSE: Triggered by JDAFS_HRRR_MANAGER to produce DAFS master files
 
@@ -66,5 +68,5 @@ This job will use specific control files for forecast hour [000-018].
 This job will skip any intermediate forecast hour if the forecast model output is not available for that forecast hour
 
 TROUBLESHOOTING
-If this job fails, make sure GFS forecast model output is available and re-run this job for the failed forecast hour. To debug, make sure GTG related source code, scripts and parm files work correctly.
+If this job fails, make sure DAFS forecast model output is available and re-run this job for the failed forecast hour. To debug, make sure GTG related source code, scripts and parm files work correctly.
 %end
