@@ -61,3 +61,4 @@ done # end of loop over all iterations
 
 if ((iter > MAX_ITER)); then
   err_exit "FATAL ERROR: ABORTING after 3 hours of waiting for HRRR ${dom} forecast output at hours ${hrrr_fhrs}."
+fi
