@@ -22,7 +22,7 @@ To compile:
 
 Compile the executable files:
 ```bash
-sh sorc/build_all.sh
+sh sorc/build_upp.sh
 ```
 
 To test
