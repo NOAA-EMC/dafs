@@ -31,7 +31,7 @@ for ((iter = 1; iter <= MAX_ITER; iter++)); do
     fhr3=$(printf "%03d" "${fhr}")
 
     # Trigger jobs based on HRRR forecast output availability
-    hrrr_data="${COMINhrrr}/hrrr_${cyc}f${fhr3}"
+    hrrr_data="${COMINhrrr}/hrrr_${PDY}${cyc}f${fhr3}"
     if [[ -s "${hrrr_data}" ]] ; then
 
       # Release $DCOM JDAFS_UPP forecast job for any forecast hour in the list
