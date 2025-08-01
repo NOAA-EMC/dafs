@@ -70,10 +70,10 @@ if [[ -n "${MODELVER}" ]] ; then
     modelver="${MODELVER}"
     packagename="dafs.${modelver}"
 else
-    modelver=${"${MODELVER}":-$(echo ${DIR_ROOT} | perl -pe "s:.*?/${model}\.(v[\d\.a-z]+).*:\1:")}
+    modelver=$(echo ${DIR_ROOT} | perl -pe "s:.*?/${model}\.(v[\d\.a-z]+).*:\1:")
     packagename=$(basename ${DIR_ROOT})
 fi
-packageroot=$(dirname ${DIR_ROOT})
+packagehome="${DIR_ROOT}"
 
 # Check if the directory ends with "dafs.vX.Y.Z"
 pattern="^dafs\.v([0-9\.a-z]+).$"
@@ -87,14 +87,13 @@ fi
 if [[ -n "${PDYcyc}" ]]; then
     template="dafs.def.tmpl"
 else
-    PDYcyc=$(date --utc "+%Y%m%d%H")
     template="dafs_nrt.def.tmpl"
 fi
 
 # Echo out the settings for the user
 echo "Settings:"
 echo "  Model: ${model}.${modelver}"
-echo "  Package Root: ${packageroot}"
+echo "  Package Home: ${packagehome}"
 if [[ -n "${EXPID}" ]]; then
     echo "  Experiment ID: ${EXPID}"
 fi
@@ -107,7 +106,7 @@ sed -e "s|@EXPID@|${EXPID}|g" \
     -e "s|@MACHINE_SITE@|${MACHINE_SITE:-development}|g" \
     -e "s|@USER@|${USER}|g" \
     -e "s|@MODELVER@|${modelver}|g" \
-    -e "s|@PACKAGEROOT@|${packageroot}|g" \
+    -e "s|@PACKAGEHOME@|${packagehome}|g" \
     -e "s|@PDY@|${PDYcyc:0:8}|g" \
     -e "s|@CYC@|${PDYcyc:8:2}|g" \
     "${DIR_ROOT}/ecf/def/${template}" >"${DIR_ROOT}/ecf/def/dafs${EXPID}.def"

@@ -2,6 +2,15 @@
 
 This README provides a basic guide on how to start using ecflow and load a suite definition file.
 
+Tips:
+1. Make sure all jobs and scripts are executable by `chmod 755`
+2. Project account of an ecflow job card is defined by %PROJ%-%PROJENVIR%. In the suite definition file, assign PROJ and PROJENVIR correctly.
+   For example, if you only have a project account of GFS-DEV, not DAFS-DEV, even you are working on DAFS project, do the following assignments:
+```
+edit PROJENVIR 'DEV'
+edit PROJ 'GFS'
+```
+
 ## Create the `ecflow` suite
 The `ecflow` suite is a collection of tasks that can be run in a specific order.  The suite is defined in a suite definition file, which is a text file that contains the tasks and dependencies between them.
 ```bash
@@ -9,6 +18,15 @@ cd dev/ecf
 ./setup_ecf.sh
 ```
 This will create a suite definition file called `dafs.def` in the `ecf/def` directory as well as links to the individual forecast hour ecf scripts.
+
+Before starting the `ecflow_server`, set the following variables.  This only needs to be set once before starting the `ecflow_server`.
+```bash
+export ECF_ROOT=${HOME}/ecflow
+export ECF_OUTPUTDIR=${ECF_ROOT}/output
+export LFS_OUTPUTDIR=${ECF_ROOT}/submit
+export ECF_COMDIR=${ECF_ROOT}/com
+mkdir -p ${ECF_ROOT}
+```
 
 ## Starting `ecflow_server`
 `ecflow_server` can only be started on dedicated ecflow server nodes.  On WCOSS2, the ecflow server nodes for development are:
@@ -20,15 +38,6 @@ This will create a suite definition file called `dafs.def` in the `ecf/def` dire
 ssh cdecflow01
 ```
 
-Before starting the `ecflow_server`, one has to set the following variables.  This only needs to be set once before starting the `ecflow_server`.
-```bash
-export ECF_ROOT=${HOME}/ecflow
-export ECF_OUTPUTDIR=${ECF_ROOT}/output
-export LFS_OUTPUTDIR=${ECF_ROOT}/submit
-export ECF_COMDIR=${ECF_ROOT}/com
-mkdir -p ${ECF_ROOT}
-```
-
 You are now ready to start the `ecflow_server`.
 ```bash
 module load ecflow
@@ -37,7 +46,7 @@ server_check.sh ${ECF_ROOT}
 This will start the `ecflow_server` and print out the port number that the server is running on.
 
 `ecflow_server` needs to be started **ONLY** once.  Once the server is running, this window can be closed.
-You can now exit the ecflow host where you started the `ecflow_server` and return to the usual WCOSS2 login nodes.
+You can now exit the ecflow host where you started the `ecflow_server` and return to the regular WCOSS2 login nodes.
 
 ## Starting `ecflow` and loading a Suite Definition File
 Load the `ecflow` module on any WCOSS2 login nodes where you want to load the suite definition file.

@@ -29,7 +29,7 @@ export RUN=${RUN:-dafs}
 ##############################################
 # Define COM directories
 ###############################################
-export COMINhrrr=${COMINhrrr:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}}
+export COMINhrrr=${COMINhrrr:-"/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}"}
 
 ####################################
 # Determine Job Output Name on System
