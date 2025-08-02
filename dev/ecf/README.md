@@ -19,15 +19,6 @@ cd dev/ecf
 ```
 This will create a suite definition file called `dafs.def` in the `ecf/def` directory as well as links to the individual forecast hour ecf scripts.
 
-Before starting the `ecflow_server`, set the following variables.  This only needs to be set once before starting the `ecflow_server`.
-```bash
-export ECF_ROOT=${HOME}/ecflow
-export ECF_OUTPUTDIR=${ECF_ROOT}/output
-export LFS_OUTPUTDIR=${ECF_ROOT}/submit
-export ECF_COMDIR=${ECF_ROOT}/com
-mkdir -p ${ECF_ROOT}
-```
-
 ## Starting `ecflow_server`
 `ecflow_server` can only be started on dedicated ecflow server nodes.  On WCOSS2, the ecflow server nodes for development are:
 - `cdecflow01`, `cdecflow02` (cactus)
@@ -36,6 +27,15 @@ mkdir -p ${ECF_ROOT}
 `ssh` to one of the above ecflow server nodes (e.g. `cdecflow01`).
 ```bash
 ssh cdecflow01
+```
+
+Before starting the `ecflow_server`, set the following variables.  This only needs to be set once before starting the `ecflow_server`.
+```bash
+export ECF_ROOT=${HOME}/ecflow
+export ECF_OUTPUTDIR=${ECF_ROOT}/output
+export LFS_OUTPUTDIR=${ECF_ROOT}/submit
+export ECF_COMDIR=${ECF_ROOT}/com
+mkdir -p ${ECF_ROOT}
 ```
 
 You are now ready to start the `ecflow_server`.
@@ -90,7 +90,7 @@ ecflow_client --begin dafs
 
 `ecflow_client --delete=/yoursuite`  To delete a suite which was previously loaded
 
-`ecflow_stop.sh -p NNNNN`            To stop ecflow_server, where NNNNN is a port number assigned to the ecflow_server
+`ecflow_stop.sh -p NNNNN`            (Login to the server node first) To stop ecflow_server, where NNNNN is a port number assigned to the ecflow_server
 
 `qstat -u $USER`                     To check any job is running, including triggered by a loaded suite
 
