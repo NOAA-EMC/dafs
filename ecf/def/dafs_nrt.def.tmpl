@@ -4,7 +4,7 @@ suite dafs@EXPID@
     edit USER '@USER@'
     edit dafs_ver '@MODELVER@'
     edit PACKAGEHOME '@PACKAGEHOME@'
-    edit ECF_INCLUDE '@PACKAGEHOME@/ecf/include'
+    edit ECF_INCLUDE '@PACKAGEHOME@/ecf/include' # Don't use %PACKAGEHOME%, it doesn't work
     edit ECF_FILES '%PACKAGEHOME%/ecf'
     edit ENVIR 'prod'
     edit QUEUE 'dev'

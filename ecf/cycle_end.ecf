@@ -5,7 +5,7 @@ model=%SUITE%
 %include <envir-p1.h>
 set -x
 cyc=%CYC%
-modelver=%MODELVER%
+modelver=%dafs_ver%
 ecflow_client --requeue=force /dafs/primary/dafs/${modelver}/${cyc}
 
 %include <tail.h>
