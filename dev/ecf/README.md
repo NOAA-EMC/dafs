@@ -31,11 +31,12 @@ ssh cdecflow01
 
 Before starting the `ecflow_server`, set the following variables.  This only needs to be set once before starting the `ecflow_server`.
 ```bash
-export ECF_ROOT=${HOME}/ecflow
+ECFDATA=/lfs/h2/emc/ptmp/$USER/ecflow_test # or any folder
+export ECF_ROOT=${ECFDATA}/ecflow
 export ECF_OUTPUTDIR=${ECF_ROOT}/output
 export LFS_OUTPUTDIR=${ECF_ROOT}/submit
 export ECF_COMDIR=${ECF_ROOT}/com
-mkdir -p ${ECF_ROOT}
+mkdir -p ${ECF_COMDIR}
 ```
 
 You are now ready to start the `ecflow_server`.
