@@ -11,8 +11,8 @@ git clone https://github.com/NOAA-EMC/DAFS
 
 Checkout the desired branch or tag
 
-Clone submodule and sub-submodule repository (including upp and upp/sorc/ncep_post.fd/post_gtg.fd):
-(gtg code is UCAR private, access needs to be authorized)
+Clone submodule and sub-submodule repository (including upp, upp/sorc/ncep_post.fd/post_gtg.fd & upp/sorc/libIFI.fd):
+(gtg & IFI code is UCAR private, access needs to be authorized)
 ```bash
 sh sorc/checkout_upp.sh
 ```
