@@ -1,6 +1,19 @@
 #!/bin/bash
 #
-
+#######################################################################
+#  UTILITY SCRIPT NAME : conus_subset_ifi_304m.sh
+#
+#  Abstract:  This script does the new maping (grid130) to IFI AND GTG & 
+#  add wmo header to new IFI file 
+#  1. upscale to grid 130 from the original 3km resolution, then
+#  2. subset each icing variable in the CONUS grid130 IFI file at  
+#  every 304m from the surface as defined in file "dafs.ifi.sub304m.params"
+#  then add the WMO header to each new sebsetted file that containn only one
+#  icing variable
+#
+#  History:  08/16/2024
+#              - initial version
+#####################################################################
 set -x
 
 dafs_ifi=$1
