@@ -12,7 +12,7 @@ fi
 
 # Build upp executable file
 cd "${DIR_ROOT}/sorc/dafs_upp.fd/tests"
-./compile_upp.sh -gi
+./compile_upp.sh -I -g
 
 # Copy upp to DAFS/exec
 rm -rf "${DIR_ROOT}/exec/dafs_upp.x"
