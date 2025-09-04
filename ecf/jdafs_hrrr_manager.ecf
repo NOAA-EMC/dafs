@@ -24,8 +24,9 @@ export dom=%DOMAIN%
 # Load modules
 ############################################################
 set +x
-module list
+
 set -x
+module list
 
 ############################################################
 # CALL executable job script
