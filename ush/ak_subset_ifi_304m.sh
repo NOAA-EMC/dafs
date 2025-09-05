@@ -18,9 +18,10 @@ set -x
 
 dafs_ifi=$1
 
-mkdir -p ${COMOUT}/wmo
-
 domain=ak
+
+cd "${COMOUT}" || err_exit "FATAL ERROR: Could not 'cd ${COMOUT}'; ABORT!"
+mkdir -p ${COMOUT}/wmo
 
 #--------------------------------------------------------------- 
 
@@ -28,8 +29,10 @@ domain=ak
 
   #-- ALL ICING species 
   
-  $WGRIB2 ${COMOUT}/${dafs_ifi}  | grep -F -f ${FIXdafs}/prdgen/dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${fname1}
+  cpreq ${FIXdafs}/prdgen/dafs.ifi.sub304m.params .
+
+  $WGRIB2 ${dafs_ifi}  | grep -F -f dafs.ifi.sub304m.params | \
+  $WGRIB2 -i ${dafs_ifi} -GRIB ${fname1}
   # $WGRIB2 -i ${COMOUT}/${dafs_ifi} -GRIB ${COMOUT}/${fname1}
 
   #================================================================
@@ -44,15 +47,29 @@ domain=ak
 
      #-- all icing 
 
-     parmfile=${parm_dir}/grib2.dafs.ifi.${fhr}      # parm file w/ header info
+     parmfile=grib2.dafs.ifi.${fhr}      # parm file w/ header info
      infile=${fname1}
      # infile=${COMOUT}/${fname1}
-     outfile=${COMOUT}/wmo/grib2.dafs.t${cyc}z.ifi.3km.${domain}.f${fhr}
+     outfile=grib2.dafs.t${cyc}z.ifi.3km.${domain}.f${fhr}
+
+     cpreq ${parm_dir}/${parmfile} .
 
      export FORT11=${infile}             # input file 
      export FORT12=                      # optional index file
      export FORT51=${outfile}            # output file w/ headers
 
-     tocgrib2 < $parmfile 1>outfile.ifi.f${fhr}.$$
+     ${TOCGRIB2} < $parmfile 1>outfile.ifi.f${fhr}.$$
 
+     export err=$?
+     err_chk
+
+     # Check if TOCGRIB2 succeeded in creating the output file
+     if [[ ! -f "${FORT51}" ]]; then
+        err_exit "FATAL ERROR: '${pgm}' failed to create '${FORT51}', ABORT!"
+     fi
+  fi
+
+  # Send data to COM
+  if [[ "${SENDCOM}" == "YES" ]]; then
+     cpfs ${outfile} ${COMOUT}/wmo
   fi
