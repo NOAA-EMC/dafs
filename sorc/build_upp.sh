@@ -2,7 +2,7 @@
 
 set -eu
 
-# Get the root of the cloned WAFS directory
+# Get the root of the cloned DAFS directory
 readonly DIR_ROOT=$(cd "$(dirname "$(readlink -f -n "${BASH_SOURCE[0]}")")/.." && pwd -P)
 
 # Check DAFS/exec folder exists
@@ -12,7 +12,7 @@ fi
 
 # Build upp executable file
 cd "${DIR_ROOT}/sorc/dafs_upp.fd/tests"
-./compile_upp.sh -gi
+./compile_upp.sh -I -g
 
 # Copy upp to DAFS/exec
 rm -rf "${DIR_ROOT}/exec/dafs_upp.x"

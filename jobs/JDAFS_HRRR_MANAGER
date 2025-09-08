@@ -1,7 +1,6 @@
 #!/bin/bash
-
 ########################################
-# DAFS UPP PRODUCT GENERATION
+# DAFS HRRR MANAGER
 ########################################
 
 date
@@ -12,7 +11,6 @@ set -x
 # make temp directory
 ####################################
 export DATA=${DATA:-${DATAROOT}/${jobid:?}}
-rm -rf "$DATA"
 mkdir -p "${DATA}" && cd "${DATA}"
 
 ###########################################
@@ -23,11 +21,6 @@ setpdy.sh
 . ./PDY
 
 ####################################
-# SENDCOM  - Copy Files From TMPDIR to $COMOUT
-####################################
-export SENDCOM=${SENDCOM:-"YES"}
-
-####################################
 # Specify NET and RUN Name and model
 ####################################
 export NET=${NET:-dafs}
@@ -35,36 +28,23 @@ export RUN=${RUN:-dafs}
 
 ##############################################
 # Define COM directories
-##############################################
-export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/conus}
-export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/${RUN}.${PDY}/${cyc}/upp/conus"}
-mkdir -p "${COMOUT}"
+###############################################
+export COMINhrrr=${COMINhrrr:-"/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}"}
 
 ####################################
 # Determine Job Output Name on System
 ####################################
 export pgmout="OUTPUT.$$"
 
-####################################
-# Specify Execution Areas
-####################################
-export EXECdafs="${HOMEdafs}/exec"
-export PARMdafs="${HOMEdafs}/parm"
-export FIXdafs="${HOMEdafs}/fix"
-export USHdafs="${HOMEdafs}/ush"
-
 #########################################################
 # print current environment
 #########################################################
 env
 
-#########################################################
-# Execute the Script
-#########################################################
-# Run UPP with 1 thread
-export OMP_NUM_THREADS=1
-
-"${HOMEdafs}/scripts/exdafs_upp_conus.sh"
+############################################
+# Execute the script.
+############################################
+"${HOMEdafs}/scripts/exdafs_hrrr_${dom}_manager.sh"
 export err=$?
 err_chk
 
