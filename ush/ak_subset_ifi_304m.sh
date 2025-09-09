@@ -18,10 +18,9 @@ set -x
 
 dafs_ifi=$1
 
-domain=ak
-
-cd "${COMOUT}" || err_exit "FATAL ERROR: Could not 'cd ${COMOUT}'; ABORT!"
 mkdir -p ${COMOUT}/wmo
+
+domain=ak
 
 #--------------------------------------------------------------- 
 
