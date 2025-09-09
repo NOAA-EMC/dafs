@@ -31,7 +31,6 @@ g130file_gtg=dafs.t${cyc}z.gtg.13km.conus.f${fhr}.grib2
 #--- Grid 130 for the GTG & ICING process
 grid_specs_130="lambert:265:25.000000 233.862000:451:13545.000000 16.281000:337:13545.000000"
 
-cd "${COMOUT}" || err_exit "FATAL ERROR: Could not 'cd ${COMOUT}'; ABORT!"
 mkdir -p ${COMOUT}/wmo
 
 #---------------------------------------------------------------
