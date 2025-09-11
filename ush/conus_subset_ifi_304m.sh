@@ -47,8 +47,13 @@ mkdir -p ${COMOUT}/wmo
      -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
      -new_grid_interpolation bilinear \
      -new_grid ${grid_specs_130} ${g130file_gtg}
-  
-  
+
+# Send data to COM
+ if [[ "${SENDCOM}" == "YES" ]]; then
+    cpfs ${g130file_ifi} ${COMOUT}
+    cpfs ${g130file_gtg} ${COMOUT}
+ fi
+ 
 #--------------------------------------------------------------- 
 #-- process IFI upscaling data 
 
@@ -80,12 +85,6 @@ mkdir -p ${COMOUT}/wmo
   $WGRIB2 -i ${g130file_ifi} -GRIB ${fname3}
   # $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname3}
 
-  # Send data to COM
-  if [[ "${SENDCOM}" == "YES" ]]; then
-     cpfs ${fname1} ${COMOUT}
-     cpfs ${fname2} ${COMOUT}
-     cpfs ${fname3} ${COMOUT}
-  fi
   #================================================================
   #-- add WMO header only at certain forcast hour
 
