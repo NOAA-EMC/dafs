@@ -66,9 +66,9 @@ fi
 # Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
 dafs_ifi="${RUN}.t${cyc}z.ifi.3km.ak.f${fhr}.grib2"
 if [[ "${SENDCOM}" == "YES" ]]; then
-    ${WGRIB2} -set subcenter 8 ${PGBOUT} -grib ${COMOUT}/${dafs_ifi} 
-    #  cpfs "${PGBOUT}" "${COMOUT}/${dafs_ifi}"
-    ${WGRIB2} -s "${PGBOUT}" >"${COMOUT}/${dafs_ifi}.idx"
+    ${WGRIB2} -set subcenter 8 ${PGBOUT} -grib ${dafs_ifi} 
+    cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
+    ${WGRIB2} -s  "${COMOUT}/${dafs_ifi}" >"${COMOUT}/${dafs_ifi}.idx"
 fi
 
 ###----- PRDGEN process and WMO header ----------------------

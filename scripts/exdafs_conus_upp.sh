@@ -69,12 +69,12 @@ dafs_ifi="${RUN}.t${cyc}z.ifi.3km.conus.f${fhr}.grib2"
 dafs_gtg="${RUN}.t${cyc}z.gtg.3km.conus.f${fhr}.grib2"
 
 if [[ "${SENDCOM}" == "YES" ]]; then
-    ${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${COMOUT}/${dafs_ifi}
-    ${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${COMOUT}/${dafs_gtg}
-    # cpfs "${PGBOUTifi}" "${COMOUT}/${dafs_ifi}"
-    # cpfs "${PGBOUTgtg}" "${COMOUT}/${dafs_gtg}"
-    ${WGRIB2} -s "${PGBOUTifi}" >"${COMOUT}/${dafs_ifi}.idx"
-    ${WGRIB2} -s "${PGBOUTgtg}" >"${COMOUT}/${dafs_gtg}.idx"
+    ${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${dafs_ifi}
+    ${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${dafs_gtg}
+    cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
+    cpfs "${dafs_gtg}" "${COMOUT}/${dafs_gtg}"
+    ${WGRIB2} -s "${COMOUT}/${dafs_ifi}" >"${COMOUT}/${dafs_ifi}.idx"
+    ${WGRIB2} -s "${COMOUT}/${dafs_gtg}" >"${COMOUT}/${dafs_gtg}.idx"
 fi
 
 ###----- PRDGEN process and WMO header ----------------------
