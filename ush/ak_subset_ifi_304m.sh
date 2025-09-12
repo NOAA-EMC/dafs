@@ -71,4 +71,5 @@ domain=ak
   # Send data to COM
   if [[ "${SENDCOM}" == "YES" ]]; then
      cpfs ${outfile} ${COMOUT}/wmo
+     cpfs ${fname1} ${COMOUT}
   fi
