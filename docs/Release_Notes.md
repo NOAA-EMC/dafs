@@ -41,61 +41,61 @@ Lastly, link the `ecflow` scripts by executing:
 
 Version File
 --------------------
-run.ver
+* run.ver
 No build.ver is needed, UPP component uses its own modufiles to compile.
 
 Sorc
 ------------
-dafs_upp.fd
+* dafs_upp.fd
 
 Jobs
 -----------
-JDAFS_HRRR_MANAGER: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
-JDAFS_HRRR_UPP: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
+* JDAFS_HRRR_MANAGER: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
+* JDAFS_HRRR_UPP: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
 
 Parm files
 ------------
 Under parm/wmo:
-grib2.dafs.ifi* parm files are used to add WMO headers.
-grib2.*rrfs* parm files are reserved for RRFS because DAFS is going to be switched to RRFS when RRFSv2 comes operational.
+* grib2.dafs.ifi* parm files are used to add WMO headers.
+* grib2.*rrfs* parm files are reserved for RRFS because DAFS is going to be switched to RRFS when RRFSv2 comes operational.
 
 Scripts
 --------------
-scripts/exdafs_hrrr_alaska_upp.sh: produces icing products over ALASKA
-scripts/exdafs_hrrr_conus_upp.sh: produces icing and turbulence over CONUS
-scripts/exdafs_hrrr_alaska_manager.sh: check HRRR model data over ALASKA is available or not
-scripts/exdafs_hrrr_conus_manager.sh: check HRRR model data over CONUS is available or not
-ush/ak_subset_ifi_304m.sh: for Alaska products, thin vertical layers and add WMO headers.
-ush/conus_subset_ifi_304m.sh: for CONUS products, upscale to grid 130, thin vertical layers and add WMO headers.
+* scripts/exdafs_hrrr_alaska_upp.sh: produces icing products over ALASKA
+* scripts/exdafs_hrrr_conus_upp.sh: produces icing and turbulence over CONUS
+* scripts/exdafs_hrrr_alaska_manager.sh: check HRRR model data over ALASKA is available or not
+* scripts/exdafs_hrrr_conus_manager.sh: check HRRR model data over CONUS is available or not
+* ush/ak_subset_ifi_304m.sh: for Alaska products, thin vertical layers and add WMO headers.
+* ush/conus_subset_ifi_304m.sh: for CONUS products, upscale to grid 130, thin vertical layers and add WMO headers.
 
 Fix files
 -----------
 Under fix/prdgen:
 1. dafs.ifi.sub304m.params is used for HRRR
 2. The following files are reserved for RRFS because DAFS is going to be switched to RRFS when RRFSv2 comes operational.
-   rrfs.natlev-FAA130.params
-   rrfs.prslev-FAA130.params
-   rrfs.prslev-FAA237.params
-   rrfs.prslev-rrfs13km.params
-   rrfs.prslev-rrfs3km.params
+*   rrfs.natlev-FAA130.params
+*   rrfs.prslev-FAA130.params
+*   rrfs.prslev-FAA237.params
+*   rrfs.prslev-rrfs13km.params
+*   rrfs.prslev-rrfs3km.params
 
 
 Modules
 --------------
-export hrrr_ver=v4.1
-export PrgEnvintel_ver=8.3.3
-export intel_ver=19.1.3.304
-export craype_ver=2.7.17
-export craympich_ver=8.1.19
-export craypals_ver=1.2.2
-export prod_envir_ver=2.0.6
-export libjpeg_ver=9c
-export hdf5_ver=1.10.6
-export netcdf_ver=4.7.4
-export g2tmpl_ver=1.15.0
-export prod_util_ver=2.0.14
-export grib_util_ver=1.2.4
-export wgrib2_ver=2.0.8
+* export hrrr_ver=v4.1
+* export PrgEnvintel_ver=8.3.3
+* export intel_ver=19.1.3.304
+* export craype_ver=2.7.17
+* export craympich_ver=8.1.19
+* export craypals_ver=1.2.2
+* export prod_envir_ver=2.0.6
+* export libjpeg_ver=9c
+* export hdf5_ver=1.10.6
+* export netcdf_ver=4.7.4
+* export g2tmpl_ver=1.15.0
+* export prod_util_ver=2.0.14
+* export grib_util_ver=1.2.4
+* export wgrib2_ver=2.0.8
 
 
 File Sizes
@@ -136,24 +136,24 @@ Products
 * Cycles: conus, hourly cycle; alaska, 3-hourly cycle
 * File contents
   1. Icing with three fields:
-     Icing Probability
-     Icing Severity
-     Supercooled Large Droplets
+  *   Icing Probability
+  *   Icing Severity
+  *   Supercooled Large Droplets
   2. Turbulence with 4 fields:
-     Clear Air Turbulence (CAT)
-     Mountain Wave Turbulence (MWT)
-     Convectively Induced Turbulence (CIT)
-     Max (CAT, MWT, CIT)
+  *   Clear Air Turbulence (CAT)
+  *   Mountain Wave Turbulence (MWT)
+  *   Convectively Induced Turbulence (CIT)
+  *   Max (CAT, MWT, CIT)
   * alaska/upp/dafs.tCCz.ifi.3km.ak.fHHH.grib2 
-    3km icing, 60 levels, every 500ft from FL005 to FL300
+    - 3km icing, 60 levels, every 500ft from FL005 to FL300
   * conus/upp/dafs.tCCz.gtg.3km.conus.fHHH.grib2 
-    3km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
+    - 3km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
   * conus/upp/dafs.tCCz.ifi.3km.conus.fHHH.grib2
-    3km icing, 60 levels, every 500ft from FL005 to FL300
+    - 3km icing, 60 levels, every 500ft from FL005 to FL300
   * conus/upp/dafs.tCCz.gtg.13km.conus.fHHH.grib2
-    13km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
+    - 13km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
   * conus/upp/dafs.tCCz.ifi.13km.conus.fHHH.grib2
-    13km icing, 60 levels, every 500ft from FL005 to FL300
+    - 13km icing, 60 levels, every 500ft from FL005 to FL300
 
 Dissemination Information
 -------------------------
@@ -189,7 +189,6 @@ Job Dependencies and flow diagram
 ---------------------------------
 * Job dependencies refers to this document: https://docs.google.com/spreadsheets/d/1x0A16CzTWXQcrkBo0FxdXIt3pYstdT50Xj9HRjEq-bw
 * Flow diagram refer to page 7 in this document: https://docs.google.com/presentation/d/1S1azSuRHzWaZCEDs3iOR7XAkasla1lFaesM82IAwrOQ/edit?slide=id.g377f6a1f3b0_0_0&pli=1#slide=id.g377f6a1f3b0_0_0
-
 
 Documentation
 -------------
