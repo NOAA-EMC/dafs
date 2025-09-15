@@ -194,6 +194,7 @@ Job Dependencies and flow diagram
 Documentation
 -------------
 * DAFS.V1 Implementation Kick-off Meeting Slides https://docs.google.com/presentation/d/1S1azSuRHzWaZCEDs3iOR7XAkasla1lFaesM82IAwrOQ
+* DAFS.V1 Science Brief Meeting Slides https://docs.google.com/presentation/d/18SNAZFqIKo7dy8WLWt5S7b_Y5z1IvLeHM2OPMJnrxyw
 
 Prepared By
 -----------
