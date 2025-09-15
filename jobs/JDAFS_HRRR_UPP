@@ -23,9 +23,12 @@ setpdy.sh
 . ./PDY
 
 ####################################
+# SEND to COM, DBN, etc
 # SENDCOM  - Copy Files From TMPDIR to $COMOUT
 ####################################
 export SENDCOM=${SENDCOM:-"YES"}
+export SENDDBN=${SENDDBN:-"YES"}
+export SENDDBN_NTC=${SENDDBN_NTC:-"YES"}
 
 ####################################
 # Specify NET and RUN Name and model
@@ -37,7 +40,7 @@ export RUN=${RUN:-dafs}
 # Define COM directories
 ##############################################
 export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}}
-export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/${RUN}.${PDY}/${cyc}/${dom}/upp"}
+export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/hrrr.${PDY}/${cyc}/${dom}/upp"}
 mkdir -p "${COMOUT}"
 
 ####################################
@@ -64,7 +67,7 @@ env
 # Run UPP with 1 thread
 export OMP_NUM_THREADS=1
 
-"${HOMEdafs}/scripts/exdafs_${dom}_upp.sh"
+"${HOMEdafs}/scripts/exdafs_hrrr_${dom}_upp.sh"
 export err=$?
 err_chk
 

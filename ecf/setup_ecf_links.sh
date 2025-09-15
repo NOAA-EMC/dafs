@@ -37,7 +37,7 @@ function link_master_to_fhr() {
 
 CLEAN=${1:-${CLEAN:-"NO"}} # Remove links only; do not create links (YES)
 
-# JDAFS_UPP
+# JDAFS_HRRR_UPP
 cd "${ECF_DIR}/upp"
 echo "Linking upp ..."
 seq1=$(seq -s ' ' 1 1 18)   # 001 -> 018; 1-hourly

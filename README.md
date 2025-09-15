@@ -25,11 +25,3 @@ Compile the executable files:
 sh sorc/build_upp.sh
 ```
 
-To test
-=================================
-cd dev/driver
-PDYcyc=2025061612
-sh rename_hrrr.sh $PDYcyc
-submit_DAFS_UPP_CONUS.sh $PDYcyc
-submit_DAFS_UPP_ALASK.sh $PDYcyc
-

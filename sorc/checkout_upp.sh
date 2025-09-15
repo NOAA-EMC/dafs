@@ -14,7 +14,10 @@ git -c submodule."sorc/libIFI.fd".update=checkout submodule update --init --recu
 # upp:
 cd "${DIR_ROOT}/sorc/dafs_upp.fd"
 
-# copy WAFS specific UPP parm/ files to the main vertical structure
+#Restrict the IFI code
+chmod -R go-rwx sorc/libIFI.fd
+
+# copy DAFS specific UPP parm/ files to the main vertical structure
 mkdir -p "${DIR_ROOT}/parm/upp"
 upp_parm_files=(hrrr_postcntrl_dafs.xml\
 		postxconfig-NT-hrrr_dafs.txt)
