@@ -26,7 +26,7 @@ The checkout procedure extracts the following DAFS components, while GTG and IFI
 | GTG       | post_gtg.fd @ 3d35332 | Yali.Mao@noaa.gov      |
 | IFI       | libIFI.fd @ 179cae1   | samuel.trahan@noaa.gov |
 
-The GTG and IFI repositories are private and may prohib from checking out if you do not have the permission. To inquire the access, please contact the code managers with justification.
+The GTG and IFI repositories are private and may prohibit you from checking out if you do not have the permission. To inquire the access, please contact the code managers with justification.
 
 To build DAFS UPP component, execute:
 ```bash
@@ -42,7 +42,7 @@ Lastly, link the `ecflow` scripts by executing:
 Version File
 --------------------
 * run.ver
-No build.ver is needed, UPP component uses its own modufiles to compile.
+* No build.ver is needed, UPP component uses its own modufiles to compile.
 
 Sorc
 ------------
@@ -107,7 +107,7 @@ Environment and Resource
 --------------------------------
 1. Add ecFlow to DAFS package
 2. Triggered by HRRR model data availability
-3. CONUS and Alaska use the same job by different domain variable "$dom"
+3. CONUS and Alaska use the same job by different domain variable "$dom" which is defined in ecf definition file.
 4. Both CONUS and Alaska UPP run takes 48 CPUs, Alaska runtime is 1 minute, CONUS runtime is 2 minutes.
 5. Package size is 113MB
 6. DATA working folder is 8.6GB/forecast, 155GB all forecasts for Alaska; 16GB/forecast, 278GB all forecasts for CONUS
@@ -135,11 +135,11 @@ Products
 * Forecast hours: f001-f018
 * Cycles: conus, hourly cycle; alaska, 3-hourly cycle
 * File contents
-  1. Icing with three fields:
+  1. Icing with three types of products:
   *   Icing Probability
   *   Icing Severity
   *   Supercooled Large Droplets
-  2. Turbulence with 4 fields:
+  2. Turbulence with 4 types of products:
   *   Clear Air Turbulence (CAT)
   *   Mountain Wave Turbulence (MWT)
   *   Convectively Induced Turbulence (CIT)
@@ -154,6 +154,9 @@ Products
     - 13km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
   * conus/upp/dafs.tCCz.ifi.13km.conus.fHHH.grib2
     - 13km icing, 60 levels, every 500ft from FL005 to FL300
+  * conus/upp/wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
+    - FLD is icp(icing probability)/sev(icing severity)/sld(supercooled large droplets)
+    - thinned 13km icing, 30 levels, every 1000ft from FL010 to FL300
 
 Dissemination Information
 -------------------------
@@ -171,11 +174,21 @@ Dissemination Information
 
 
 * Where should this output be sent?
-  * All data is sent to AWC
-  * dafs.tCCz.ifi.3km.ak.fHHH.grib2 is sent to AAWU
-  * 13km products (dafs.tCCz.ifi.13km.conus.fHHH.grib2 and dafs.tCCz.gtg.13km.conus.fHHH.grib2) are sent to FAA
+  * Product list sent to AWC:
+    - dafs.tCCz.ifi.3km.ak.fHHH.grib2
+    - dafs.tCCz.gtg.3km.conus.fHHH.grib2
+    - dafs.tCCz.ifi.3km.conus.fHHH.grib2
+    - dafs.tCCz.gtg.13km.conus.fHHH.grib2
+    - dafs.tCCz.ifi.13km.conus.fHHH.grib2
+  * Product list sent to AAWU:
+    - dafs.tCCz.ifi.3km.ak.fHHH.grib2
+  * Product list sent to FAA via NGITWS (FAA's bandwidth limits from handling 3km products)
+    - dafs.tCCz.gtg.13km.conus.fHHH.grib2
+    - dafs.tCCz.ifi.13km.conus.fHHH.grib2
+  * Product list sent to the public via TGFTP:
+    - conus/upp/wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
 * Who are the users?
-  * AWC, FAA, Alaska Aviation Weather Unit (AAWU)
+  * AWC, FAA, Alaska Aviation Weather Unit (AAWU) and the public
 * Which output files should be transferred from PROD WCOSS to DEV WCOSS?
   * All DAFS files should be transferred
 
