@@ -9,7 +9,7 @@ This implementation is a new standalone Domestic Aviation Forecast System (DAFS)
 Implementation Instructions
 ---------------------------
 
-Though the project was transferred to NOAA-AWC, the DAFS code is still managed under the NOAA-EMC and NCAR organization spaces on GitHub.  The SPA(s) handling the DAFS implementation need to have permissions to clone the private NCAR UPP_GTGand NCAR IFI repository.  All NOAA-EMC organization repositories are publicly readable and do not require access permissions.  Please proceed with the following steps to checkout, build, and install the package on WCOSS2:
+Though the project was transferred to NOAA-AWC, the DAFS code is still managed under the NOAA-EMC and NCAR organization spaces on GitHub.  The SPA(s) handling the DAFS implementation need to have permissions to clone the private NCAR UPP_GTG and NCAR IFI repository.  All NOAA-EMC organization repositories are publicly readable and do not require access permissions.  Please proceed with the following steps to checkout, build, and install the package on WCOSS2:
 
 Checkout the package from GitHub and `cd` into the directory:
 ```bash
@@ -26,7 +26,7 @@ The checkout procedure extracts the following DAFS components, while GTG and IFI
 | GTG       | post_gtg.fd @ 3d35332 | Yali.Mao@noaa.gov      |
 | IFI       | libIFI.fd @ 179cae1   | samuel.trahan@noaa.gov |
 
-The GTG and IFI repositories are private which may protect you from checking out. To inquire the access, please contact the code managers with justification.
+The GTG and IFI repositories are private and may prohib from checking out if you do not have the permission. To inquire the access, please contact the code managers with justification.
 
 To build DAFS UPP component, execute:
 ```bash
