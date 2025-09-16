@@ -22,7 +22,7 @@ cd $DIR_ROOT/dev/ecf
 # create a suite def file in real time
 ./setup_ecf.sh -v v1.0.0
 
-suitename="wafs"
+suitename="dafs"
 
 # set ECF_HOST according to which WCOSS2 machine
 if [[ $(hostname) =~ ^[d][login|dxfer] ]]  ; then

@@ -86,7 +86,8 @@ USER=$(whoami)
 # KEEPDATA=NO--Remove temporary working
 ############################################
 export SENDCOM=YES
-export SENDDBN=NO
+export SENDDBN=YES
+export SENDDBN_NTC=YES
 
 export KEEPDATA=YES
 
@@ -106,5 +107,5 @@ DATAroot=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
 #############################################
 export DATA=$DATAroot/hrrr_${PDY}${cyc}_f${fhr}_$dom
 
-$HOMEdafs/jobs/JDAFS_UPP
+$HOMEdafs/jobs/JDAFS_HRRR_UPP
 echo $?
