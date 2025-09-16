@@ -4,7 +4,7 @@ DAFS v1.0.0  RELEASE NOTES
 Prelude
 -------
 
-This implementation is a new standalone Domestic Aviation Forecast System (DAFS). It utilizes UPP and generates In-Flight Icing (IFI) and Graphical Turbulence Guidance (GTG) products from the High-Resolution Rapid Refresh (HRRR) model data.
+This implementation is a new standalone Domestic Aviation Forecast System (DAFS). It utilizes UPP and generates high resolution 3km In-Flight Icing (IFI) and Graphical Turbulence Guidance (GTG) products from the High-Resolution Rapid Refresh (HRRR) model data.
 
 Implementation Instructions
 ---------------------------
