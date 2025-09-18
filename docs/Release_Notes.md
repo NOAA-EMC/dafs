@@ -22,7 +22,7 @@ sh sorc/checkout_upp.sh
 The checkout procedure extracts the following DAFS components, while GTG and IFI are subcomponents of UPP.:
 | Component | Revision              | POC                    |
 | --------- | --------------------- | ---------------------- |
-| UPP       | dafs_upp.fd @ 9a4d5d2 | Wen.Meng@noaa.gov      |
+| UPP       | dafs_upp.fd @ a449eb7 | Wen.Meng@noaa.gov      |
 | GTG       | post_gtg.fd @ 3d35332 | Yali.Mao@noaa.gov      |
 | IFI       | libIFI.fd @ 179cae1   | samuel.trahan@noaa.gov |
 

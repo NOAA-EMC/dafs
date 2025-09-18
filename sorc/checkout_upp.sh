@@ -23,7 +23,7 @@ upp_parm_files=(hrrr_postcntrl_dafs.xml\
 		postxconfig-NT-hrrr_dafs.txt)
 for upp_parm_file in "${upp_parm_files[@]}"; do
   rm -f "${DIR_ROOT}/parm/upp/${upp_parm_file}"
-  cp "parm/${upp_parm_file}" "${DIR_ROOT}/parm/upp/${upp_parm_file}"
+  cp "parm/dafs/${upp_parm_file}" "${DIR_ROOT}/parm/upp/${upp_parm_file}"
 done
 gtg_parm_files=(gtg.config.hrrr \
 		gtg.input.hrrr)
