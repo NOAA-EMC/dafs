@@ -60,7 +60,7 @@ export err=$?
 err_chk
 
 # Check if UPP succeeded in creating the master file
-if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}"] ; then
+if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}" ] ; then
     err_exit "FATAL ERROR: UPP failed to create '${PGBOUTifi} or ${PGBOUTgtg}', ABORT!"
 fi
 
