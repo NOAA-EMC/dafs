@@ -100,12 +100,15 @@ fi
   ifhr=$(expr $fhr + 0)
 
   if [ $ifhr = 1 -o  $ifhr = 2 -o  $ifhr = 3 -o  $ifhr = 6 -o  $ifhr = 9 -o  $ifhr = 12 -o  $ifhr = 15 -o  $ifhr = 18 ]; then   
-  
+
+     export pgm="${TOCGRIB2}"
+      
      #-- icprb
 
      parmfile=grib2.dafs.ifi.icprb.${fhr}      # parm file w/ header info
-     infile=${fname1}
-     # infile=${COMOUT}/${fname1}
+     # Change generating ID to Forecast product from NCEP/AWC (193)
+     infile="${fname1}.193"
+     ${WGRIB2} -set analysis_or_forecast_process_id 193 ${fname1} -grib ${infile}
      outfile=grib2.dafs.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
@@ -137,8 +140,9 @@ fi
      #-- sipd
   
      parmfile=grib2.dafs.ifi.sipd.${fhr}      # parm file w/ header info
-     infile=${fname2}
-     # infile=${COMOUT}/${fname2}
+     # Change generating ID to Forecast product from NCEP/AWC (193)
+     infile="${fname2}.193"
+     ${WGRIB2} -set analysis_or_forecast_process_id 193 ${fname2} -grib ${infile}
      outfile=grib2.dafs.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
@@ -170,8 +174,9 @@ fi
      #-- icesev
 
      parmfile=grib2.dafs.ifi.icesev.${fhr}      # parm file w/ header info
-     infile=${fname3}
-     # infile=${COMOUT}/${fname3}
+     # Change generating ID to Forecast product from NCEP/AWC (193)
+     infile="${fname3}.193"
+     ${WGRIB2} -set analysis_or_forecast_process_id 193 ${fname3} -grib ${infile}
      outfile=grib2.dafs.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
