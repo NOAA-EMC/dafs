@@ -100,7 +100,8 @@ fi
   ifhr=$(expr $fhr + 0)
 
   # As in DAFS implementation, public CONUS IFI icing will be disseminated hourly products
-  #  if [ $ifhr = 1 -o  $ifhr = 2 -o  $ifhr = 3 -o  $ifhr = 6 -o  $ifhr = 9 -o  $ifhr = 12 -o  $ifhr = 15 -o  $ifhr = 18 ]; then   
+  #  if [ $ifhr = 1 -o  $ifhr = 2 -o  $ifhr = 3 -o  $ifhr = 6 -o  $ifhr = 9 -o  $ifhr = 12 -o  $ifhr = 15 -o  $ifhr = 18 ]; then
+ 
 
      export pgm="${TOCGRIB2}"
       
