@@ -99,7 +99,8 @@ fi
   #-- remove the leading 0"
   ifhr=$(expr $fhr + 0)
 
-  if [ $ifhr = 1 -o  $ifhr = 2 -o  $ifhr = 3 -o  $ifhr = 6 -o  $ifhr = 9 -o  $ifhr = 12 -o  $ifhr = 15 -o  $ifhr = 18 ]; then   
+  # As in DAFS implementation, public CONUS IFI icing will be disseminated hourly products
+  # if [ $ifhr = 1 -o  $ifhr = 2 -o  $ifhr = 3 -o  $ifhr = 6 -o  $ifhr = 9 -o  $ifhr = 12 -o  $ifhr = 15 -o  $ifhr = 18 ]; then   
 
      export pgm="${TOCGRIB2}"
       
@@ -204,4 +205,4 @@ fi
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
 	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW hrrr "${job}" "${COMOUT}/wmo/${outfile}"
      fi
-  fi
+  # fi
