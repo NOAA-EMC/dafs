@@ -1,0 +1,19 @@
+*.[aox]
+*.mod
+exec/
+bin/
+
+build*/
+install*/
+log*
+
+*.sw[a-p]
+
+# Ignore the upp parm files so they do not get added to this repo
+parm/upp
+
+# Ignore the symlinked files in the ecf/scripts directory
+ecf/upp/jdafs_*_upp_f*.ecf
+
+# Ignore dafs.def
+ecf/def/dafs*.def

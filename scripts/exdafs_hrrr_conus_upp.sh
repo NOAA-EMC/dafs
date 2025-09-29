@@ -12,7 +12,7 @@ set -x
 #               - initial version, for DAFS v1.0.0
 ###########################################################################
 POSTGRB2TBL=${POSTGRB2TBL:-"${g2tmpl_ROOT}/share/params_grib2_tbl_new"}
-APRUN=${APRUN:-"mpiexec -l -n 144 -ppn 36 --cpu-bind core --depth 2"}
+APRUN=${APRUN:-"mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"}
 
 cd "${DATA}" || err_exit "FATAL ERROR: Could not 'cd ${DATA}'; ABORT!"
 
@@ -60,21 +60,27 @@ export err=$?
 err_chk
 
 # Check if UPP succeeded in creating the master file
-if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}"] ; then
+if [ ! -f "${PGBOUTifi}" ] || [ ! -f "${PGBOUTgtg}" ] ; then
     err_exit "FATAL ERROR: UPP failed to create '${PGBOUTifi} or ${PGBOUTgtg}', ABORT!"
 fi
 
 # Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
 dafs_ifi="${RUN}.t${cyc}z.ifi.3km.conus.f${fhr}.grib2"
 dafs_gtg="${RUN}.t${cyc}z.gtg.3km.conus.f${fhr}.grib2"
+${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${dafs_ifi}
+${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${dafs_gtg}
 
 if [[ "${SENDCOM}" == "YES" ]]; then
-    ${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${COMOUT}/${dafs_ifi}
-    ${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${COMOUT}/${dafs_gtg}
-    # cpfs "${PGBOUTifi}" "${COMOUT}/${dafs_ifi}"
-    # cpfs "${PGBOUTgtg}" "${COMOUT}/${dafs_gtg}"
-    ${WGRIB2} -s "${PGBOUTifi}" >"${COMOUT}/${dafs_ifi}.idx"
-    ${WGRIB2} -s "${PGBOUTgtg}" >"${COMOUT}/${dafs_gtg}.idx"
+    cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
+    cpfs "${dafs_gtg}" "${COMOUT}/${dafs_gtg}"
+    ${WGRIB2} -s "${COMOUT}/${dafs_ifi}" >"${COMOUT}/${dafs_ifi}.idx"
+    ${WGRIB2} -s "${COMOUT}/${dafs_gtg}" >"${COMOUT}/${dafs_gtg}.idx"
+fi
+
+# Alert via DBN
+if [[ "${SENDDBN}" == "YES" ]]; then
+    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_ifi}"
+    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_GTG_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_gtg}"
 fi
 
 ###----- PRDGEN process and WMO header ----------------------

@@ -29,7 +29,7 @@ export RUN=${RUN:-dafs}
 ##############################################
 # Define COM directories
 ###############################################
-export COMINhrrr=${COMINhrrr:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/alaska}
+export COMINhrrr=${COMINhrrr:-"/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}"}
 
 ####################################
 # Determine Job Output Name on System
@@ -44,7 +44,7 @@ env
 ############################################
 # Execute the script.
 ############################################
-"${HOMEdafs}/scripts/exdafs_hrrr_alaska_manager.sh"
+"${HOMEdafs}/scripts/exdafs_hrrr_${dom}_manager.sh"
 export err=$?
 err_chk
 

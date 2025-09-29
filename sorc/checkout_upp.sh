@@ -2,7 +2,7 @@
 
 set -eu
 
-# Get the root of the cloned WAFS directory
+# Get the root of the cloned DAFS directory
 readonly DIR_ROOT=$(cd "$(dirname "$(readlink -f -n "${BASH_SOURCE[0]}" )" )/.." && pwd -P)
 
 cd "${DIR_ROOT}"
@@ -14,13 +14,16 @@ git -c submodule."sorc/libIFI.fd".update=checkout submodule update --init --recu
 # upp:
 cd "${DIR_ROOT}/sorc/dafs_upp.fd"
 
-# copy WAFS specific UPP parm/ files to the main vertical structure
+#Restrict the IFI code
+chmod -R go-rwx sorc/libIFI.fd
+
+# copy DAFS specific UPP parm/ files to the main vertical structure
 mkdir -p "${DIR_ROOT}/parm/upp"
 upp_parm_files=(hrrr_postcntrl_dafs.xml\
 		postxconfig-NT-hrrr_dafs.txt)
 for upp_parm_file in "${upp_parm_files[@]}"; do
   rm -f "${DIR_ROOT}/parm/upp/${upp_parm_file}"
-  cp "parm/${upp_parm_file}" "${DIR_ROOT}/parm/upp/${upp_parm_file}"
+  cp "parm/dafs/${upp_parm_file}" "${DIR_ROOT}/parm/upp/${upp_parm_file}"
 done
 gtg_parm_files=(gtg.config.hrrr \
 		gtg.input.hrrr)

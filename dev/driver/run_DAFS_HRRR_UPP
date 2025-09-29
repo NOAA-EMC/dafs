@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -j oe
-#PBS -N DAFS_conus
+#PBS -N DAFSLOG
 #PBS -l walltime=00:10:00
 #PBS -q debug
 #PBS -A GFS-DEV
@@ -13,6 +13,8 @@
 cd $PBS_O_WORKDIR
 
 set -x
+
+export dom=$domain
 
 # specify computation resource
 export threads=1
@@ -71,7 +73,7 @@ export cycle=t${cyc}z
 export fhr=006
 export PDY=$(cut -c 7-14 $COMROOT/date/t${cyc}z)
 
-export job=dafs_upp_conus_${cyc}
+export job=dafs_upp_${dom}_${cyc}
 
 export pid=${pid:-$$}
 export jobid=${job}.${pid}
@@ -84,7 +86,8 @@ USER=$(whoami)
 # KEEPDATA=NO--Remove temporary working
 ############################################
 export SENDCOM=YES
-export SENDDBN=NO
+export SENDDBN=YES
+export SENDDBN_NTC=YES
 
 export KEEPDATA=YES
 
@@ -92,18 +95,17 @@ export KEEPDATA=YES
 # Define DATA, COMOUT and COMIN
 ############################################
 
-export COMROOT=/lfs/h2/emc/ptmp/$USER/dafs/$envir/com
+export COMROOT=/lfs/h2/emc/ptmp/$USER/dafs.noecf/$envir/com
 
 export COMPATH=/lfs/h1/ops/prod/com/hrrr/v4.1
-export COMPATH=/lfs/h2/emc/ptmp/$USER/hrrr_tmp
-export COMIN=${COMIN:-${COMPATH}/nwges/hrrrges_sfc/conus}
+export COMIN=${COMIN:-${COMPATH}/nwges/hrrrges_sfc/${dom}}
 
 DATAroot=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
 
 ############################################
 # run the job
 #############################################
-export DATA=$DATAroot/hrrr_${PDY}${cyc}_f${fhr}
+export DATA=$DATAroot/hrrr_${PDY}${cyc}_f${fhr}_$dom
 
-$HOMEdafs/jobs/JDAFS_UPP_CONUS
+$HOMEdafs/jobs/JDAFS_HRRR_UPP
 echo $?

@@ -1,0 +1,21 @@
+#!/bin/bash -l
+
+model=%SUITE%
+%include <head.h>
+%include <envir-p1.h>
+set -x
+cyc=%CYC%
+modelver=%dafs_ver%
+ecflow_client --requeue=force /dafs/primary/dafs/${modelver}/${cyc}
+
+%include <tail.h>
+%manual
+TASK: cycle_end.ecf
+
+PURPOSE:
+  To force requeue of dafs package. It replaces 'repeat day 1' to solve system unstable issue.
+
+The job is scheduled to requeue dafs tasks by 'cron' at T+0:45.
+
+%end
+exit 0
