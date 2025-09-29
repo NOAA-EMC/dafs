@@ -12,7 +12,7 @@ tmpdir=/lfs/h2/emc/ptmp/${USER}/working_dafs_${PDYcyc}
 mkdir -p $tmpdir
 cd $tmpdir
 
-jobcard=run_DAFS_UPP
+jobcard=run_DAFS_HRRR_UPP
 cp "${DIR_ROOT}/dev/driver/${jobcard}" .
 
 for (( ifhr=1; ifhr<=18; ifhr++ )); do

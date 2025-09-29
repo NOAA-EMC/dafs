@@ -17,7 +17,7 @@ DOM=$(echo $dom | tr '[:lower:]' '[:upper:]')
 
 hrrr_fhrs=$(seq -s ' ' 1 1 18)
 
-# Forecast hours for JDAFS_UPP (CONUS & AK)
+# Forecast hours for JDAFS_HRRR_UPP (CONUS & AK)
 seq1=$(seq -s ' ' 1 1 18)   # 001 -> 018; 1-hourly
 jdafs_upp_fhrs="${seq1}"
 
@@ -34,10 +34,10 @@ for ((iter = 1; iter <= MAX_ITER; iter++)); do
     hrrr_data="${COMINhrrr}/hrrr_${PDY}${cyc}f${fhr3}"
     if [[ -s "${hrrr_data}" ]] ; then
 
-      # Release $DCOM JDAFS_UPP forecast job for any forecast hour in the list
+      # Release $DCOM JDAFS_HRRR_UPP forecast job for any forecast hour in the list
       if [[ " ${jdafs_upp_fhrs} " == *" ${fhr} "* ]]; then
         set +x
-        echo "Releasing $DOM JDAFS_UPP job for fhr=${fhr3}"
+        echo "Releasing $DOM JDAFS_HRRR_UPP job for fhr=${fhr3}"
         set -x
         ecflow_client --event "release_dafs_${dom}_upp_${fhr3}"
       fi
