@@ -127,8 +127,6 @@ Products
   * Inside DAFSv1, there is only one job running on two domains, conus and alaska
     1. At 3-hourly cycles,
        * |-- alaska/upp
-       * |-- conus/upp
-       * |-- conus/upp/wmo
     2. At hourly cycles,
        * |-- conus/upp
        * |-- conus/upp/wmo
@@ -136,14 +134,14 @@ Products
 * Cycles: conus, hourly cycle; alaska, 3-hourly cycle
 * File contents
   1. Icing with three types of products:
-  *   Icing Probability
-  *   Icing Severity
-  *   Supercooled Large Droplets
+    *   Icing Probability
+    *   Icing Severity
+    *   Supercooled Large Droplets
   2. Turbulence with 4 types of products:
-  *   Clear Air Turbulence (CAT)
-  *   Mountain Wave Turbulence (MWT)
-  *   Convectively Induced Turbulence (CIT)
-  *   Max (CAT, MWT, CIT)
+    *   Clear Air Turbulence (CAT)
+    *   Mountain Wave Turbulence (MWT)
+    *   Convectively Induced Turbulence (CIT)
+    *   Max (CAT, MWT, CIT)
   * alaska/upp/dafs.tCCz.ifi.3km.ak.fHHH.grib2 
     - 3km icing, 60 levels, every 500ft from FL005 to FL300
   * conus/upp/dafs.tCCz.gtg.3km.conus.fHHH.grib2 
