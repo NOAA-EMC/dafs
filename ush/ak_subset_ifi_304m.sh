@@ -24,7 +24,7 @@ domain=ak
 
 #--------------------------------------------------------------- 
 
-  fname1="${RUN}.t${cyc}z.ifi.icing.3km.${domain}.f${fhr}.grib2"
+  fname1="${NET}.t${cyc}z.ifi.icing.3km.${domain}.f${fhr}.grib2"
 
   #-- ALL ICING species 
   

@@ -50,8 +50,8 @@ Sorc
 
 Jobs
 -----------
-* JDAFS_HRRR_MANAGER: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
-* JDAFS_HRRR_UPP: uses '$dom' to differentiate calling of CONUS or ALASKA scripts
+* JDAFS_MANAGER: uses '$DOMAIN' to differentiate COMIN for CONUS or ALASKA
+* JDAFS_FORECAST: uses '$DOMAIN' to differentiate calling of CONUS or ALASKA scripts
 
 Parm files
 ------------
@@ -61,10 +61,9 @@ Under parm/wmo:
 
 Scripts
 --------------
-* scripts/exdafs_hrrr_alaska_upp.sh: produces icing products over ALASKA
-* scripts/exdafs_hrrr_conus_upp.sh: produces icing and turbulence over CONUS
-* scripts/exdafs_hrrr_alaska_manager.sh: check HRRR model data over ALASKA is available or not
-* scripts/exdafs_hrrr_conus_manager.sh: check HRRR model data over CONUS is available or not
+* scripts/exdafs_forecast_alaska.sh: produces icing products over ALASKA
+* scripts/exdafs_forecast_conus.sh: produces icing and turbulence over CONUS
+* scripts/exdafs_manager.sh: check HRRR model data over ALASKA/CONUS is available or not
 * ush/ak_subset_ifi_304m.sh: for Alaska products, thin vertical layers and add WMO headers.
 * ush/conus_subset_ifi_304m.sh: for CONUS products, upscale to grid 130, thin vertical layers and add WMO headers.
 
@@ -107,7 +106,7 @@ Environment and Resource
 --------------------------------
 1. Add ecFlow to DAFS package
 2. Triggered by HRRR model data availability
-3. CONUS and Alaska use the same job by different domain variable "$dom" which is defined in ecf definition file.
+3. CONUS and Alaska use the same job by different domain variable "$DOMAIN" which is defined in ecf definition file.
 4. Both CONUS and Alaska UPP run takes 48 CPUs, Alaska runtime is 1 minute, CONUS runtime is 2 minutes.
 5. Package size is 113MB
 6. DATA working folder is 8.6GB/forecast, 155GB all forecasts for Alaska; 16GB/forecast, 278GB all forecasts for CONUS

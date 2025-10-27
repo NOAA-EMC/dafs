@@ -12,14 +12,14 @@ tmpdir=/lfs/h2/emc/ptmp/${USER}/working_dafs_${PDYcyc}
 mkdir -p $tmpdir
 cd $tmpdir
 
-jobcard=run_DAFS_HRRR_UPP
+jobcard=run_DAFS_FORECAST
 cp "${DIR_ROOT}/dev/driver/${jobcard}" .
 
 for (( ifhr=1; ifhr<=18; ifhr++ )); do
   fhr=$(printf "%03d" $ifhr)
   sed -e "s|HOMEdafs=.*|HOMEdafs=$DIR_ROOT|g" \
   -e "s|DAFSLOG|DAFS_${domain}_${PDYcyc}_f${fhr}|g" \
-  -e "s|dom=.*|dom=${domain}|g" \
+  -e "s|DOMAIN=.*|DOMAIN=${domain}|g" \
   -e "s|PDY=.*|PDY=${PDYcyc:0:8}|g" \
   -e "s|cyc=.*|cyc=${PDYcyc:8:2}|g" \
   -e "s|fhr=.*|fhr=$fhr|g" \

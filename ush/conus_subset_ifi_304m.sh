@@ -19,8 +19,8 @@ set -x
 dafs_ifi=$1
 dafs_gtg=$2
 
-g130file_ifi=dafs.t${cyc}z.ifi.13km.conus.f${fhr}.grib2
-g130file_gtg=dafs.t${cyc}z.gtg.13km.conus.f${fhr}.grib2
+g130file_ifi=${NET}.t${cyc}z.ifi.13km.conus.f${fhr}.grib2
+g130file_gtg=${NET}.t${cyc}z.gtg.13km.conus.f${fhr}.grib2
 
 # ---- Get grib data at certain record # ----------------------
 #
@@ -64,9 +64,9 @@ fi
 #-- process IFI upscaling data 
 
   domain="conus"
-  fname1="${RUN}.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}.grib2"
-  fname2="${RUN}.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}.grib2"
-  fname3="${RUN}.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}.grib2"
+  fname1="${NET}.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}.grib2"
+  fname2="${NET}.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}.grib2"
+  fname3="${NET}.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}.grib2"
 
   #-- subset IFI data at every 304 m & separate files
 
@@ -135,7 +135,7 @@ fi
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW hrrr "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
      fi
 
      #-- sipd
@@ -169,7 +169,7 @@ fi
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW hrrr "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
      fi
 
      #-- icesev
@@ -203,6 +203,6 @@ fi
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW hrrr "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
      fi
   # fi

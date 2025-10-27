@@ -1,7 +1,6 @@
 #!/bin/bash
-
 ########################################
-# DAFS UPP PRODUCT GENERATION
+# DAFS HRRR MANAGER
 ########################################
 
 date
@@ -12,7 +11,6 @@ set -x
 # make temp directory
 ####################################
 export DATA=${DATA:-${DATAROOT}/${jobid:?}}
-rm -rf "$DATA"
 mkdir -p "${DATA}" && cd "${DATA}"
 
 ###########################################
@@ -23,51 +21,30 @@ setpdy.sh
 . ./PDY
 
 ####################################
-# SEND to COM, DBN, etc
-# SENDCOM  - Copy Files From TMPDIR to $COMOUT
-####################################
-export SENDCOM=${SENDCOM:-"YES"}
-export SENDDBN=${SENDDBN:-"YES"}
-export SENDDBN_NTC=${SENDDBN_NTC:-"YES"}
-
-####################################
 # Specify NET and RUN Name and model
 ####################################
 export NET=${NET:-dafs}
-export RUN=${RUN:-dafs}
+export RUN=${RUN:-$RUN}
 
 ##############################################
 # Define COM directories
-##############################################
-export COMIN=${COMIN:-/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}}
-export COMOUT=${COMOUT:-$(compath.py -o "${NET}/${dafs_ver}")"/hrrr.${PDY}/${cyc}/${dom}/upp"}
-mkdir -p "${COMOUT}"
+###############################################
+export COMIN=${COMIN:-$(compath.py "hrrr/${hrrr_ver}")/nwges/hrrrges_sfc/$DOMAIN}
 
 ####################################
 # Determine Job Output Name on System
 ####################################
 export pgmout="OUTPUT.$$"
 
-####################################
-# Specify Execution Areas
-####################################
-export EXECdafs="${HOMEdafs}/exec"
-export PARMdafs="${HOMEdafs}/parm"
-export FIXdafs="${HOMEdafs}/fix"
-export USHdafs="${HOMEdafs}/ush"
-
 #########################################################
 # print current environment
 #########################################################
 env
 
-#########################################################
-# Execute the Script
-#########################################################
-# Run UPP with 1 thread
-export OMP_NUM_THREADS=1
-
-"${HOMEdafs}/scripts/exdafs_hrrr_${dom}_upp.sh"
+############################################
+# Execute the script.
+############################################
+"${HOMEdafs}/scripts/exdafs_manager.sh"
 export err=$?
 err_chk
 

@@ -1,5 +1,5 @@
 #PBS -S /bin/bash
-#PBS -N %RUN%_upp_f%FHR%_%DOMAIN%_%CYC%
+#PBS -N %RUN%_forecast_f%FHR%_%DOMAIN%_%CYC%
 #PBS -j oe
 #PBS -q %QUEUE%
 #PBS -A %PROJ%-%PROJENVIR%
@@ -20,7 +20,7 @@ export RUN=%RUN%
 export cyc=%CYC%
 export fhr=%FHR%
 
-export dom=%DOMAIN%
+export DOMAIN=%DOMAIN%
 
 ############################################################
 # Load modules
@@ -50,7 +50,7 @@ module list
 ############################################################
 # CALL executable job script here
 ############################################################
-${HOMEdafs}/jobs/JDAFS_HRRR_UPP
+${HOMEdafs}/jobs/JDAFS_FORECAST
 if [ $? -ne 0 ]; then
    ecflow_client --msg="***JOB ${ECF_NAME} ERROR RUNNING J-SCRIPT ***"
    ecflow_client --abort
@@ -59,11 +59,11 @@ fi
 
 %include <tail.h>
 %manual
-TASK: JDAFS_HRRR_UPP
+TASK: JDAFS_FORECAST
 
-PURPOSE: Triggered by JDAFS_HRRR_MANAGER to produce DAFS UPP files
+PURPOSE: Triggered by JDAFS_MANAGER to produce DAFS UPP files
 
-This job will be triggered for each forecast hour by JDAFS_HRRR_MANAGER once HRRR forecast model output is available.
+This job will be triggered for each forecast hour by JDAFS_MANAGER once model forecast model output is available.
 Different from general UPP, this job will be with GTG & IFI to produce DAFS UPP files for its downstream jobs.
 This job will use specific control files for forecast hour [000-018].
 This job will skip any intermediate forecast hour if the forecast model output is not available for that forecast hour
