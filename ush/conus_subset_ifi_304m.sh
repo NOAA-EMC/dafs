@@ -72,6 +72,11 @@ fi
 
   cpreq ${FIXdafs}/prdgen/dafs.ifi.sub304m.params .
 
+
+  # For WMO data, choose complex3 and no bitmap to decrease the file size
+  $WGRIB2 ${g130file_ifi} -set_bitmap 0 -set_grib_type c3 -grib_out ${g130file_ifi}.nobitmap
+  mv ${g130file_ifi}.nobitmap ${g130file_ifi}
+  
   #-- ICPRB
 
   $WGRIB2 ${g130file_ifi} -s | grep ":ICPRB:" | grep -F -f dafs.ifi.sub304m.params | \
@@ -81,7 +86,7 @@ fi
   #-- sipd
   
   $WGRIB2 ${g130file_ifi} -s | grep ":SIPD:"  | grep -F -f dafs.ifi.sub304m.params | \
-  $WGRIB2 ${g130file_ifi} -GRIB ${fname2}
+  $WGRIB2 -i ${g130file_ifi} -GRIB ${fname2}
   # $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname2}
 
   #-- icesev
