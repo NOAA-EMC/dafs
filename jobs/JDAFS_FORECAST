@@ -1,6 +1,7 @@
 #!/bin/bash
+
 ########################################
-# DAFS HRRR MANAGER
+# DAFS UPP PRODUCT GENERATION
 ########################################
 
 date
@@ -11,6 +12,7 @@ set -x
 # make temp directory
 ####################################
 export DATA=${DATA:-${DATAROOT}/${jobid:?}}
+rm -rf "$DATA"
 mkdir -p "${DATA}" && cd "${DATA}"
 
 ###########################################
@@ -21,30 +23,53 @@ setpdy.sh
 . ./PDY
 
 ####################################
+# SEND to COM, DBN, etc
+# SENDCOM  - Copy Files From TMPDIR to $COMOUT
+####################################
+export SENDCOM=${SENDCOM:-"YES"}
+export SENDDBN=${SENDDBN:-"YES"}
+export SENDDBN_NTC=${SENDDBN_NTC:-"YES"}
+
+####################################
 # Specify NET and RUN Name and model
 ####################################
 export NET=${NET:-dafs}
-export RUN=${RUN:-dafs}
+export RUN=${RUN:-$RUN}
+export DOMAIN=${DOMAIN:-$DOMAIN}
 
 ##############################################
 # Define COM directories
-###############################################
-export COMINhrrr=${COMINhrrr:-"/lfs/h1/ops/prod/com/hrrr/${hrrr_ver}/nwges/hrrrges_sfc/${dom}"}
+##############################################
+export COMIN=${COMIN:-$(compath.py "hrrr/${hrrr_ver}")/nwges/hrrrges_sfc/$DOMAIN}
+
+export COMOUT=${COMOUT:-$(compath.py -o "dafs/${dafs_ver}")/dafs.${PDY}}
+mkdir -p "${COMOUT}"
 
 ####################################
 # Determine Job Output Name on System
 ####################################
 export pgmout="OUTPUT.$$"
 
+####################################
+# Specify Execution Areas
+####################################
+export EXECdafs="${HOMEdafs}/exec"
+export PARMdafs="${HOMEdafs}/parm"
+export FIXdafs="${HOMEdafs}/fix"
+export USHdafs="${HOMEdafs}/ush"
+
 #########################################################
 # print current environment
 #########################################################
 env
 
-############################################
-# Execute the script.
-############################################
-"${HOMEdafs}/scripts/exdafs_hrrr_${dom}_manager.sh"
+#########################################################
+# Execute the Script
+#########################################################
+# Run UPP with 1 thread
+export OMP_NUM_THREADS=1
+
+${HOMEdafs}/scripts/exdafs_forecast_${DOMAIN}.sh
 export err=$?
 err_chk
 

@@ -14,7 +14,7 @@ cd $PBS_O_WORKDIR
 
 set -x
 
-export dom=$domain
+export DOMAIN=$domain
 
 # specify computation resource
 export threads=1
@@ -73,7 +73,7 @@ export cycle=t${cyc}z
 export fhr=006
 export PDY=$(cut -c 7-14 $COMROOT/date/t${cyc}z)
 
-export job=dafs_upp_${dom}_${cyc}
+export job=dafs_upp_${DOMAIN}_${cyc}
 
 export pid=${pid:-$$}
 export jobid=${job}.${pid}
@@ -98,14 +98,14 @@ export KEEPDATA=YES
 export COMROOT=/lfs/h2/emc/ptmp/$USER/dafs.noecf/$envir/com
 
 export COMPATH=/lfs/h1/ops/prod/com/hrrr/v4.1
-export COMIN=${COMIN:-${COMPATH}/nwges/hrrrges_sfc/${dom}}
+export COMIN=${COMIN:-${COMPATH}/nwges/hrrrges_sfc/${DOMAIN}}
 
 DATAroot=/lfs/h2/emc/ptmp/$USER/DAFS_tmp
 
 ############################################
 # run the job
 #############################################
-export DATA=$DATAroot/hrrr_${PDY}${cyc}_f${fhr}_$dom
+export DATA=$DATAroot/hrrr_${PDY}${cyc}_f${fhr}_$DOMAIN
 
-$HOMEdafs/jobs/JDAFS_HRRR_UPP
+$HOMEdafs/jobs/JDAFS_FORECAST
 echo $?

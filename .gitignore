@@ -13,7 +13,8 @@ log*
 parm/upp
 
 # Ignore the symlinked files in the ecf/scripts directory
-ecf/upp/jdafs_*_upp_f*.ecf
+ecf/forecast/jdafs_forecast_*_f???*.ecf
 
 # Ignore dafs.def
 ecf/def/dafs*.def
+
