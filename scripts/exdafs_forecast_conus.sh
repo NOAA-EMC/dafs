@@ -2,7 +2,7 @@
 set -x
 
 ###########################################################################
-#  UTILITY SCRIPT NAME :  exdafs_upp_conus.sh
+#  UTILITY SCRIPT NAME :  exdafs_forecast_conus.sh
 #         DATE WRITTEN :  06/15/2025
 #
 #  Abstract:  This script runs the offline UPP based on HRRR Conus
@@ -67,8 +67,11 @@ fi
 # Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
 dafs_ifi="${NET}.t${cyc}z.ifi.3km.conus.f${fhr}.grib2"
 dafs_gtg="${NET}.t${cyc}z.gtg.3km.conus.f${fhr}.grib2"
-${WGRIB2} -set subcenter 8 ${PGBOUTifi} -grib ${dafs_ifi}
-${WGRIB2} -set subcenter 8 ${PGBOUTgtg} -grib ${dafs_gtg}
+
+# Change subcenter to AWC
+# Change generating ID to Forecast product from NCEP/AWC (193)
+${WGRIB2} ${PGBOUTifi} -set subcenter 8  -set analysis_or_forecast_process_id 193 -grib ${dafs_ifi}
+${WGRIB2} ${PGBOUTgtg} -set subcenter 8  -set analysis_or_forecast_process_id 193 -grib ${dafs_gtg}
 
 if [[ "${SENDCOM}" == "YES" ]]; then
     cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
