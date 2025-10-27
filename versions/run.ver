@@ -14,4 +14,4 @@ export hrrr_ver=v4.1
 
 export prod_envir_ver=2.0.6
 export prod_util_ver=2.0.14
-export dafs_ver=v1.0.0
+export dafs_ver=v1.0.3

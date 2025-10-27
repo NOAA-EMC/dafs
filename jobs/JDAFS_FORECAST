@@ -40,9 +40,9 @@ export DOMAIN=${DOMAIN:-$DOMAIN}
 ##############################################
 # Define COM directories
 ##############################################
-export COMIN=${COMIN:-$(compath.py "hrrr/${hrrr_ver}")/nwges/hrrrges_sfc/$DOMAIN/}
+export COMIN=${COMIN:-$(compath.py "hrrr/${hrrr_ver}")/nwges/hrrrges_sfc/$DOMAIN}
 
-export COMOUT=${COMOUT:-$(compath.py -o "dafs/${dafs_ver}")/dafs.${PDY}/$DOMAIN/}
+export COMOUT=${COMOUT:-$(compath.py -o "dafs/${dafs_ver}")/dafs.${PDY}}
 mkdir -p "${COMOUT}"
 
 ####################################
