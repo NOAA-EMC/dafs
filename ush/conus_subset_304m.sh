@@ -35,15 +35,20 @@ grid_specs_130="lambert:265:25.000000 233.862000:451:13545.000000 16.281000:337:
 #---------------------------------------------------------------
 #-- upscaling to G130 from 3km data
 
-  $WGRIB2 ${dafs_3km} -set_bitmap 1 -set_grib_type c3 \
+if [[ $var == "ifi" ]] ; then
+    interpolation="neighbor"
+elif [[ $var == "gtg" ]] ; then
+    interpolation="bilinear"
+fi
+$WGRIB2 ${dafs_3km} -set_bitmap 1 -set_grib_type c3 \
      -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
-     -new_grid_interpolation neighbor \
+     -new_grid_interpolation ${interpolation} \
      -new_grid ${grid_specs_130} ${g130file}
 
 # Send data to COM
- if [[ "${SENDCOM}" == "YES" ]]; then
+if [[ "${SENDCOM}" == "YES" ]]; then
     cpfs "${g130file}" "${COMOUT}/${g130file}"
- fi
+fi
 
 # Alert via DBN
 if [[ "${SENDDBN}" == "YES" ]]; then
