@@ -1,4 +1,4 @@
-DAFS v1.0.0  RELEASE NOTES
+DAFS v1.0.3  RELEASE NOTES
 
 -------
 Prelude
@@ -14,7 +14,7 @@ Though the project was transferred to NOAA-AWC, the DAFS code is still managed u
 Checkout the package from GitHub and `cd` into the directory:
 ```bash
 cd ${PACKAGEROOT}
-git clone -b dafs.v1.0.0 https://github.com/noaa-emc/dafs dafs.v1.0.0
+git clone -b dafs.v1.0.3 https://github.com/noaa-emc/dafs dafs.v1.0.3
 cd dafs.v1.0.0
 sh sorc/checkout_upp.sh
 ```
@@ -56,7 +56,8 @@ Jobs
 Parm files
 ------------
 Under parm/wmo:
-* grib2.dafs.ifi* parm files are used to add WMO headers.
+* grib2.dafs.ifi* parm files are used to add WMO headers to IFI products.
+* grib2.dafs.gtg* parm files are used to add WMO headers to GTG products.
 * grib2.*rrfs* parm files are reserved for RRFS because DAFS is going to be switched to RRFS when RRFSv2 comes operational.
 
 Scripts
@@ -64,8 +65,8 @@ Scripts
 * scripts/exdafs_forecast_alaska.sh: produces icing products over ALASKA
 * scripts/exdafs_forecast_conus.sh: produces icing and turbulence over CONUS
 * scripts/exdafs_manager.sh: check HRRR model data over ALASKA/CONUS is available or not
-* ush/ak_subset_ifi_304m.sh: for Alaska products, thin vertical layers and add WMO headers.
-* ush/conus_subset_ifi_304m.sh: for CONUS products, upscale to grid 130, thin vertical layers and add WMO headers.
+* ush/ak_subset.sh: for Alaska products, thin vertical layers and add WMO headers.
+* ush/conus_subset_304m.sh: for CONUS products, upscale to grid 130, thin vertical layers and add WMO headers.
 
 Fix files
 -----------
@@ -99,8 +100,7 @@ Modules
 
 File Sizes
 ---------------------
-* alaska/upp: 1.2G
-* conus/upp: 3.9G
+* 5.1G
 
 Environment and Resource
 --------------------------------
@@ -114,7 +114,7 @@ Environment and Resource
 Pre-implementation Testing Requirements
 ---------------------------------------
 * Which production jobs should be tested as part of this implementation?
-  * The entire DAFS v1.0.0 package needs to be installed and tested on WCOSS-2
+  * The entire DAFS v1.0.3package needs to be installed and tested on WCOSS-2
 * Does this change require a 30-day evaluation?
   * Yes
 
@@ -122,14 +122,14 @@ Pre-implementation Testing Requirements
 Products
 ---------------
 * Directory
-  * dafs/v1.0/hrrr.YYYYMMDD/CC
+  * dafs/v1.0/dafs.YYYYMMDD
   * Inside DAFSv1, there is only one job running on two domains, conus and alaska
     1. At 3-hourly cycles,
-       * |-- alaska/upp
+       * ak products
     2. At hourly cycles,
-       * |-- conus/upp
-       * |-- conus/upp/wmo
-* Forecast hours: f001-f018
+       * |-- conus products
+       * |-- conus wmo headed products
+* Forecast hours: post runs f000-f018, products: GTG f000-f018, IFI f001-f018
 * Cycles: conus, hourly cycle; alaska, 3-hourly cycle
 * File contents
   1. Icing with three types of products:
@@ -142,19 +142,23 @@ Products
      -   Convectively Induced Turbulence (CIT)
      -   Max (CAT, MWT, CIT)
 * Products    
-  * alaska/upp/dafs.tCCz.ifi.3km.ak.fHHH.grib2 
+  * dafs.tCCz.ifi.3km.ak.fHHH.grib2 
     - 3km icing, 60 levels, every 500ft from FL005 to FL300
-  * conus/upp/dafs.tCCz.gtg.3km.conus.fHHH.grib2 
+  * dafs.tCCz.gtg.3km.conus.fHHH.grib2 
     - 3km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
-  * conus/upp/dafs.tCCz.ifi.3km.conus.fHHH.grib2
+  * dafs.tCCz.ifi.3km.conus.fHHH.grib2
     - 3km icing, 60 levels, every 500ft from FL005 to FL300
-  * conus/upp/dafs.tCCz.gtg.13km.conus.fHHH.grib2
+  * dafs.tCCz.gtg.13km.conus.fHHH.grib2
     - 13km turbulence, 51 levels, one near surface (FL001) then every 1000ft from FL010 to FL500
-  * conus/upp/dafs.tCCz.ifi.13km.conus.fHHH.grib2
+  * dafs.tCCz.ifi.13km.conus.fHHH.grib2
     - 13km icing, 60 levels, every 500ft from FL005 to FL300
-  * conus/upp/wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
+  * wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
     - FLD is icp(icing probability)/sev(icing severity)/sld(supercooled large droplets)
     - thinned 13km icing, 30 levels, every 1000ft from FL010 to FL300
+  * wmo/grib2.dafs.tCCz.gtg.13km.conus.fHHH
+    - 13km turbulence with MXEDPRM (2D), CATEDR, MWTURB, CITEDR (new product). No EDPARM
+    - Selective 9 forecast hours are 00 01 02 03 06 09 12 15 18
+    
 
 Dissemination Information
 -------------------------
@@ -166,9 +170,10 @@ Dissemination Information
   | dafs.tCCz.gtg.3km.conus.fHHH.grib2                    | DAFS_GTG_3km_CONUS_GB2
   | dafs.tCCz.ifi.13km.conus.fHHH.grib2                   | DAFS_IFI_13km_CONUS_GB2
   | dafs.tCCz.gtg.13km.conus.fHHH.grib2                   | DAFS_GTG_13km_CONUS_GB2
-  | conus/upp/wmo/grib2.dafs.tCCz.ifi.icp.13km.conus.fHHH | hrrr
-  | conus/upp/wmo/grib2.dafs.tCCz.ifi.sev.13km.conus.fHHH | hrrr
-  | conus/upp/wmo/grib2.dafs.tCCz.ifi.sld.13km.conus.fHHH | hrrr
+  | wmo/grib2.dafs.tCCz.ifi.icp.13km.conus.fHHH           | dafs
+  | wmo/grib2.dafs.tCCz.ifi.sev.13km.conus.fHHH           | dafs
+  | wmo/grib2.dafs.tCCz.ifi.sld.13km.conus.fHHH           | dafs
+  | wmo/grib2.dafs.tCCz.gtg.13km.conus.fHHH               | dafs
 
 
 * Where should this output be sent?
@@ -184,7 +189,8 @@ Dissemination Information
     - dafs.tCCz.gtg.13km.conus.fHHH.grib2
     - dafs.tCCz.ifi.13km.conus.fHHH.grib2
   * Product list sent to the public via TGFTP:
-    - conus/upp/wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
+    - wmo/grib2.dafs.tCCz.ifi.FLD.13km.conus.fHHH
+    - wmo/grib2.dafs.tCCz.gtg.13km.conus.fHHH
 * Who are the users?
   * AWC, FAA, Alaska Aviation Weather Unit (AAWU) and the public
 * Which output files should be transferred from PROD WCOSS to DEV WCOSS?

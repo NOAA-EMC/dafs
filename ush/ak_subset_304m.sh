@@ -1,22 +1,22 @@
 #!/bin/bash
 #######################################################################
-#  UTILITY SCRIPT NAME : ak_subset_ifi_304m.sh
+#  UTILITY SCRIPT NAME : ak_subset_304m.sh
 #
 #  Abstract:  This script subset every species in the AK IFI file at  
-#  every 304m from the surface as defined in file "ak_subset_ifi_304m"
+#  every 304m from the surface as defined in file "ak_subset_304m"
 #  then add the WMO header to this new sebsetted file
 #
 #  History:  08/16/2024
 #              - initial version
 #####################################################################
 set -x
+var=$1
+dafs_ifi="${NET}.t${cyc}z.${var}.3km.ak.f${fhr}.grib2"
 
 # ---- Get grib data at certain record # ----------------------
 #
 #  subset IFI for each variable at every 304 m & separate files 
 #
-
-dafs_ifi=$1
 
 mkdir -p ${COMOUT}/wmo
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################################################
-#  UTILITY SCRIPT NAME : conus_subset_ifi_304m.sh
+#  UTILITY SCRIPT NAME : conus_subset_304m.sh
 #
 #  Abstract:  This script does the new maping (grid130) to IFI AND GTG & 
 #  add wmo header to new IFI file 
@@ -10,17 +10,18 @@
 #  every 304m from the surface as defined in file "dafs.ifi.sub304m.params"
 #  then add the WMO header to each new sebsetted file that containn only one
 #  icing variable
+# 3. Excluding EDPARM and add WMO headers to CATEDR, MWTURB, CITEDR, MXEDPRM(2D)
 #
-#  History:  08/16/2024
-#              - initial version
+#  History:  08/16/2024 - initial version
+#            10/28/2025 - Add WMO headers to 13km CONUS GTG
 #####################################################################
 set -x
 
-dafs_ifi=$1
-dafs_gtg=$2
+var=$1 #ifi/gtg
+dafs_3km=${NET}.t${cyc}z.${var}.3km.conus.f${fhr}.grib2
+g130file=${NET}.t${cyc}z.${var}.13km.conus.f${fhr}.grib2
 
-g130file_ifi=${NET}.t${cyc}z.ifi.13km.conus.f${fhr}.grib2
-g130file_gtg=${NET}.t${cyc}z.gtg.13km.conus.f${fhr}.grib2
+domain="conus"
 
 # ---- Get grib data at certain record # ----------------------
 #
@@ -31,46 +32,40 @@ g130file_gtg=${NET}.t${cyc}z.gtg.13km.conus.f${fhr}.grib2
 #--- Grid 130 for the GTG & ICING process
 grid_specs_130="lambert:265:25.000000 233.862000:451:13545.000000 16.281000:337:13545.000000"
 
-mkdir -p ${COMOUT}/wmo
-
 #---------------------------------------------------------------
 #-- upscaling to G130 from 3km data
 
-# -- IFI --
-  $WGRIB2 ${dafs_ifi} -set_bitmap 1 -set_grib_type c3 \
+if [[ $var == "ifi" ]] ; then
+    interpolation="neighbor"
+elif [[ $var == "gtg" ]] ; then
+    interpolation="bilinear"
+fi
+$WGRIB2 ${dafs_3km} -set_bitmap 1 -set_grib_type c3 \
      -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
-     -new_grid_interpolation neighbor \
-     -new_grid ${grid_specs_130} ${g130file_ifi}
-
-#-- GTG --
-  $WGRIB2 ${dafs_gtg} -set_bitmap 1 -set_grib_type c3 \
-     -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
-     -new_grid_interpolation bilinear \
-     -new_grid ${grid_specs_130} ${g130file_gtg}
+     -new_grid_interpolation ${interpolation} \
+     -new_grid ${grid_specs_130} ${g130file}
 
 # Send data to COM
- if [[ "${SENDCOM}" == "YES" ]]; then
-     if [[ "${fhr}" != "000" ]] ; then
-	 cpfs "${g130file_ifi}" "${COMOUT}/${g130file_ifi}"
-     fi
-    cpfs "${g130file_gtg}" "${COMOUT}/${g130file_gtg}"
- fi
+if [[ "${SENDCOM}" == "YES" ]]; then
+    cpfs "${g130file}" "${COMOUT}/${g130file}"
+fi
 
 # Alert via DBN
 if [[ "${SENDDBN}" == "YES" ]]; then
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file_ifi}"
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_GTG_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file_gtg}"
+    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file}"
 fi
 
 #--------------------------------------------------------------- 
-#-- process IFI upscaling data
+#-- Add WMO headers to IFI upscaled data
 
-if [[ "${fhr}" == "000" ]] ; then
-    echo "IFI is not generated at forecast hour f000"
-    exit 0
-fi
+parm_dir=${PARMdafs}/wmo
+mkdir -p ${COMOUT}/wmo
 
-  domain="conus"
+# For WMO data, choose complex3 and no bitmap to decrease the file size
+$WGRIB2 ${g130file} -set_bitmap 0 -set_grib_type c3 -grib_out ${g130file}.nobitmap
+mv ${g130file}.nobitmap ${g130file}
+
+if [[ $var == "ifi" ]] ; then
   fname1="${NET}.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}.grib2"
   fname2="${NET}.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}.grib2"
   fname3="${NET}.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}.grib2"
@@ -80,33 +75,20 @@ fi
   cpreq ${FIXdafs}/prdgen/dafs.ifi.sub304m.params .
 
 
-  # For WMO data, choose complex3 and no bitmap to decrease the file size
-  $WGRIB2 ${g130file_ifi} -set_bitmap 0 -set_grib_type c3 -grib_out ${g130file_ifi}.nobitmap
-  mv ${g130file_ifi}.nobitmap ${g130file_ifi}
-  
   #-- ICPRB
 
-  $WGRIB2 ${g130file_ifi} -s | grep ":ICPRB:" | grep -F -f dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${g130file_ifi} -GRIB ${fname1}
-  # $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname1}
+  $WGRIB2 ${g130file} -s | grep ":ICPRB:" | grep -F -f dafs.ifi.sub304m.params | \
+  $WGRIB2 -i ${g130file} -GRIB ${fname1}
 
   #-- sipd
   
-  $WGRIB2 ${g130file_ifi} -s | grep ":SIPD:"  | grep -F -f dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${g130file_ifi} -GRIB ${fname2}
-  # $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname2}
+  $WGRIB2 ${g130file} -s | grep ":SIPD:"  | grep -F -f dafs.ifi.sub304m.params | \
+  $WGRIB2 -i ${g130file} -GRIB ${fname2}
 
   #-- icesev
   
-  $WGRIB2 ${g130file_ifi} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f dafs.ifi.sub304m.params | \
-  # $WGRIB2 ${COMOUT}/${g130file_ifi} -s | grep ":var discipline=0 master_table=2 parmcat=19 parm=37:" | grep -F -f ${FIXdafs}/prdgen/dafs.ifi.sub304m.params | \
-  $WGRIB2 -i ${g130file_ifi} -GRIB ${fname3}
-  # $WGRIB2 -i ${COMOUT}/${g130file_ifi} -GRIB ${COMOUT}/${fname3}
-
-  #================================================================
-  #-- add WMO header only at certain forcast hour
-
-  parm_dir=${PARMdafs}/wmo
+  $WGRIB2 ${g130file} -s | grep -E ":ICESEV:|parm=37:"  | grep -F -f dafs.ifi.sub304m.params | \
+  $WGRIB2 -i ${g130file} -GRIB ${fname3}
 
   #-- remove the leading 0"
   ifhr=$(expr $fhr + 0)
@@ -120,16 +102,16 @@ fi
 
      parmfile=grib2.dafs.ifi.icprb.${fhr}      # parm file w/ header info
      infile="${fname1}"
-     outfile=grib2.dafs.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}
+     wmofile=grib2.dafs.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
 
      . prep_step
      export FORT11=${infile}             # input file 
      export FORT12=                      # optional index file
-     export FORT51=${outfile}            # output file w/ headers
+     export FORT51=${wmofile}            # output file w/ headers
 
-     ${TOCGRIB2} < $parmfile 1>outfile.icprb.f${fhr}.$$
+     ${TOCGRIB2} < $parmfile 1>wmofile.icprb.f${fhr}.$$
 
      export err=$?
      err_chk
@@ -141,27 +123,27 @@ fi
 
      # Send data to COM
      if [[ "${SENDCOM}" == "YES" ]]; then
-        cpfs ${outfile} ${COMOUT}/wmo/.
+        cpfs ${wmofile} ${COMOUT}/wmo/.
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${wmofile}"
      fi
 
      #-- sipd
   
      parmfile=grib2.dafs.ifi.sipd.${fhr}      # parm file w/ header info
      infile="${fname2}"
-     outfile=grib2.dafs.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}
+     wmofile=grib2.dafs.t${cyc}z.ifi.sld.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
 
      . prep_step
      export FORT11=${infile}             # input file 
      export FORT12=                      # optional index file
-     export FORT51=${outfile}            # output file w/ headers
+     export FORT51=${wmofile}            # output file w/ headers
 
-     ${TOCGRIB2} < $parmfile 1>outfile.sipd.f${fhr}.$$
+     ${TOCGRIB2} < $parmfile 1>wmofile.sipd.f${fhr}.$$
 
      export err=$?
      err_chk
@@ -173,27 +155,27 @@ fi
 
      # Send data to COM
      if [[ "${SENDCOM}" == "YES" ]]; then
-        cpfs ${outfile} ${COMOUT}/wmo/.
+        cpfs ${wmofile} ${COMOUT}/wmo/.
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${wmofile}"
      fi
 
      #-- icesev
 
      parmfile=grib2.dafs.ifi.icesev.${fhr}      # parm file w/ header info
      infile="${fname3}"
-     outfile=grib2.dafs.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}
+     wmofile=grib2.dafs.t${cyc}z.ifi.sev.13km.${domain}.f${fhr}
 
      cpreq ${parm_dir}/${parmfile} .
 
      . prep_step
      export FORT11=${infile}               # input file 
      export FORT12=                        # optional index file
-     export FORT51=${outfile}              # output file w/ headers
+     export FORT51=${wmofile}              # output file w/ headers
 
-     ${TOCGRIB2} < $parmfile 1>outfile.icesev.f${fhr}.$$
+     ${TOCGRIB2} < $parmfile 1>wmofile.icesev.f${fhr}.$$
 
      export err=$?
      err_chk
@@ -205,10 +187,53 @@ fi
 
      # Send data to COM
      if [[ "${SENDCOM}" == "YES" ]]; then
-        cpfs ${outfile} ${COMOUT}/wmo/.
+        cpfs ${wmofile} ${COMOUT}/wmo/.
      fi
 
      if [[ "${SENDDBN_NTC}" == "YES" ]]; then
-	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${outfile}"
+	 "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${wmofile}"
      fi
   # fi
+fi
+
+#---------------------------------------------------------------
+#-- Add WMO headers to GTG upscaled data
+if [[ $var == "gtg" ]] ; then
+    if [[ "000 001 002 003 006 009 012 015 018" =~ $fhr ]] ; then
+	file_selected="${NET}.t${cyc}z.gtg.selected.13km.${domain}.f${fhr}.grib2"
+	$WGRIB2 ${g130file}  | grep -v ":EDPARM:" | $WGRIB2 -i ${g130file} -GRIB ${file_selected}
+
+	export pgm="${TOCGRIB2}"
+
+	parmfile=grib2.dafs.gtg.${fhr}
+	wmofile=grib2.dafs.t${cyc}z.gtg.13km.${domain}.f${fhr}
+
+	cpreq ${parm_dir}/${parmfile} .
+
+	. prep_step
+	export FORT11="${file_selected}"    # input file
+	export FORT12=                      # optional index file
+	export FORT51=${wmofile}            # output file w/ headers
+    
+	${TOCGRIB2} < $parmfile 1>wmofile.gtg.f${fhr}.$$
+
+	export err=$?
+	err_chk
+
+	# Check if TOCGRIB2 succeeded in creating the output file
+	if [[ ! -f "${FORT51}" ]]; then
+            err_exit "FATAL ERROR: '${pgm}' failed to create '${FORT51}', ABORT!"
+	fi
+
+	# Send data to COMOUT/wmo
+	if [[ "${SENDCOM}" == "YES" ]]; then
+            cpfs ${wmofile} ${COMOUT}/wmo/.
+	fi
+
+	if [[ "${SENDDBN_NTC}" == "YES" ]]; then
+            "${DBNROOT}/bin/dbn_alert" GRIB_LOW dafs "${job}" "${COMOUT}/wmo/${wmofile}"
+	fi
+    fi
+fi
+
+    
