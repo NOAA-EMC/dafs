@@ -74,22 +74,25 @@ ${WGRIB2} ${PGBOUTifi} -set subcenter 8  -set analysis_or_forecast_process_id 19
 ${WGRIB2} ${PGBOUTgtg} -set subcenter 8  -set analysis_or_forecast_process_id 193 -grib ${dafs_gtg}
 
 if [[ "${SENDCOM}" == "YES" ]]; then
-    cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
+    if [[ "${fhr}" != "000" ]] ; then
+	cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
+	${WGRIB2} -s "${COMOUT}/${dafs_ifi}" >"${COMOUT}/${dafs_ifi}.idx"
+    fi
     cpfs "${dafs_gtg}" "${COMOUT}/${dafs_gtg}"
-    ${WGRIB2} -s "${COMOUT}/${dafs_ifi}" >"${COMOUT}/${dafs_ifi}.idx"
     ${WGRIB2} -s "${COMOUT}/${dafs_gtg}" >"${COMOUT}/${dafs_gtg}.idx"
 fi
 
 # Alert via DBN
 if [[ "${SENDDBN}" == "YES" ]]; then
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_ifi}"
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_ifi}.idx"
+    if [[ "${fhr}" != "000" ]] ; then
+	"${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_ifi}"
+	"${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_ifi}.idx"
+    fi
     "${DBNROOT}/bin/dbn_alert" MODEL DAFS_GTG_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_gtg}"
     "${DBNROOT}/bin/dbn_alert" MODEL DAFS_GTG_3km_CONUS_GB2 "${job}" "${COMOUT}/${dafs_gtg}.idx"
 fi
 
 ###----- PRDGEN process and WMO header ----------------------
-fhrx=$(expr $fhr + 0) #remove the leading 0
 $USHdafs/conus_subset_ifi_304m.sh ${dafs_ifi} ${dafs_gtg}
 
 echo "PROGRAM IS COMPLETE!!!!!"

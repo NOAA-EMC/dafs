@@ -11,6 +11,11 @@ set -x
 #  History:  06/15/2025
 #               - initial version, for DAFS v1.0.0
 ###########################################################################
+if [[ "${fhr}" == "000" ]] ; then
+    echo "No GTG over Alaska. IFI is not generated at forecast hour f000"
+    exit 0
+fi
+
 POSTGRB2TBL=${POSTGRB2TBL:-"${g2tmpl_ROOT}/share/params_grib2_tbl_new"}
 APRUN=${APRUN:-"mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"}
 
@@ -83,7 +88,6 @@ fi
 
 ###----- PRDGEN process and WMO header ----------------------
 # No need WMO headers for the Alaska products
-#fhrx=$(expr $fhr + 0) #remove the leading 0
 #$USHdafs/ak_subset_ifi_304m.sh ${dafs_ifi}
 
 echo "PROGRAM IS COMPLETE!!!!!"
