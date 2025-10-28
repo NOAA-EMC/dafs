@@ -2,7 +2,7 @@
 set -x
 
 ###########################################################################
-#  UTILITY SCRIPT NAME :  exdafs_upp_alaska.sh
+#  UTILITY SCRIPT NAME :  exdafs_forecast_alaska.sh
 #         DATE WRITTEN :  06/15/2025
 #
 #  Abstract:  This script runs the offline UPP based on HRRR Alaska
@@ -65,7 +65,10 @@ fi
 
 # Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
 dafs_ifi="${NET}.t${cyc}z.ifi.3km.ak.f${fhr}.grib2"
-${WGRIB2} -set subcenter 8 ${PGBOUT} -grib ${dafs_ifi} 
+
+# Change subcenter to AWC
+# Change generating ID to Forecast product from NCEP/AWC (193)
+${WGRIB2} ${PGBOUT} -set subcenter 8 -set analysis_or_forecast_process_id 193 -grib ${dafs_ifi} 
 
 if [[ "${SENDCOM}" == "YES" ]]; then
     cpfs "${dafs_ifi}" "${COMOUT}/${dafs_ifi}"
