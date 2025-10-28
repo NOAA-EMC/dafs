@@ -93,7 +93,10 @@ if [[ "${SENDDBN}" == "YES" ]]; then
 fi
 
 ###----- PRDGEN process and WMO header ----------------------
-$USHdafs/conus_subset_ifi_304m.sh ${dafs_ifi} ${dafs_gtg}
+if [[ "${fhr}" != "000" ]] ; then
+    $USHdafs/conus_subset_304m.sh "ifi"
+fi
+$USHdafs/conus_subset_304m.sh "gtg"
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date

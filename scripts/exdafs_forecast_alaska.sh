@@ -88,7 +88,7 @@ fi
 
 ###----- PRDGEN process and WMO header ----------------------
 # No need WMO headers for the Alaska products
-#$USHdafs/ak_subset_ifi_304m.sh ${dafs_ifi}
+#$USHdafs/ak_subset_304m.sh "ifi"
 
 echo "PROGRAM IS COMPLETE!!!!!"
 date
