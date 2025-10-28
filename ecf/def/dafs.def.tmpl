@@ -31,25 +31,29 @@ suite dafs@EXPID@
 	  family conus
 	    edit DOMAIN 'conus'
             task jdafs_manager
-              event 1 release_dafs_forecast_conus_001  # forecast
-              event 2 release_dafs_forecast_conus_002
-              event 3 release_dafs_forecast_conus_003
-              event 4 release_dafs_forecast_conus_004
-              event 5 release_dafs_forecast_conus_005
-              event 6 release_dafs_forecast_conus_006
-              event 7 release_dafs_forecast_conus_007
-              event 8 release_dafs_forecast_conus_008
-              event 9 release_dafs_forecast_conus_009
-              event 10 release_dafs_forecast_conus_010
-              event 11 release_dafs_forecast_conus_011
-              event 12 release_dafs_forecast_conus_012
-              event 13 release_dafs_forecast_conus_013
-              event 14 release_dafs_forecast_conus_014
-              event 15 release_dafs_forecast_conus_015
-              event 16 release_dafs_forecast_conus_016
-              event 17 release_dafs_forecast_conus_017
-              event 18 release_dafs_forecast_conus_018
+              event 1 release_dafs_forecast_conus_000  # forecast
+              event 2 release_dafs_forecast_conus_001
+              event 3 release_dafs_forecast_conus_002
+              event 4 release_dafs_forecast_conus_003
+              event 5 release_dafs_forecast_conus_004
+              event 6 release_dafs_forecast_conus_005
+              event 7 release_dafs_forecast_conus_006
+              event 8 release_dafs_forecast_conus_007
+              event 9 release_dafs_forecast_conus_008
+              event 10 release_dafs_forecast_conus_009
+              event 11 release_dafs_forecast_conus_010
+              event 12 release_dafs_forecast_conus_011
+              event 13 release_dafs_forecast_conus_012
+              event 14 release_dafs_forecast_conus_013
+              event 15 release_dafs_forecast_conus_014
+              event 16 release_dafs_forecast_conus_015
+              event 17 release_dafs_forecast_conus_016
+              event 18 release_dafs_forecast_conus_017
+              event 19 release_dafs_forecast_conus_018
             family forecast
+              task jdafs_forecast_conus_f000
+                trigger ../jdafs_manager:release_dafs_forecast_conus_000
+                edit FHR 000
               task jdafs_forecast_conus_f001
                 trigger ../jdafs_manager:release_dafs_forecast_conus_001
                 edit FHR 001
@@ -109,25 +113,29 @@ suite dafs@EXPID@
 	  family alaska
 	    edit DOMAIN 'alaska'
             task jdafs_manager
-              event 1 release_dafs_forecast_alaska_001  # forecast
-              event 2 release_dafs_forecast_alaska_002
-              event 3 release_dafs_forecast_alaska_003
-              event 4 release_dafs_forecast_alaska_004
-              event 5 release_dafs_forecast_alaska_005
-              event 6 release_dafs_forecast_alaska_006
-              event 7 release_dafs_forecast_alaska_007
-              event 8 release_dafs_forecast_alaska_008
-              event 9 release_dafs_forecast_alaska_009
-              event 10 release_dafs_forecast_alaska_010
-              event 11 release_dafs_forecast_alaska_011
-              event 12 release_dafs_forecast_alaska_012
-              event 13 release_dafs_forecast_alaska_013
-              event 14 release_dafs_forecast_alaska_014
-              event 15 release_dafs_forecast_alaska_015
-              event 16 release_dafs_forecast_alaska_016
-              event 17 release_dafs_forecast_alaska_017
-              event 18 release_dafs_forecast_alaska_018
+              event 1 release_dafs_forecast_alaska_000  # forecast
+              event 2 release_dafs_forecast_alaska_001
+              event 3 release_dafs_forecast_alaska_002
+              event 4 release_dafs_forecast_alaska_003
+              event 5 release_dafs_forecast_alaska_004
+              event 6 release_dafs_forecast_alaska_005
+              event 7 release_dafs_forecast_alaska_006
+              event 8 release_dafs_forecast_alaska_007
+              event 9 release_dafs_forecast_alaska_008
+              event 10 release_dafs_forecast_alaska_009
+              event 11 release_dafs_forecast_alaska_010
+              event 12 release_dafs_forecast_alaska_011
+              event 13 release_dafs_forecast_alaska_012
+              event 14 release_dafs_forecast_alaska_013
+              event 15 release_dafs_forecast_alaska_014
+              event 16 release_dafs_forecast_alaska_015
+              event 17 release_dafs_forecast_alaska_016
+              event 18 release_dafs_forecast_alaska_017
+              event 19 release_dafs_forecast_alaska_018
             family forecast
+              task jdafs_forecast_alaska_f000
+                trigger ../jdafs_manager:release_dafs_forecast_alaska_000
+                edit FHR 000
               task jdafs_forecast_alaska_f001
                 trigger ../jdafs_manager:release_dafs_forecast_alaska_001
                 edit FHR 001
