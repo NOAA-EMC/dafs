@@ -50,7 +50,9 @@ mkdir -p ${COMOUT}/wmo
 
 # Send data to COM
  if [[ "${SENDCOM}" == "YES" ]]; then
-    cpfs "${g130file_ifi}" "${COMOUT}/${g130file_ifi}"
+     if [[ "${fhr}" != "000" ]] ; then
+	 cpfs "${g130file_ifi}" "${COMOUT}/${g130file_ifi}"
+     fi
     cpfs "${g130file_gtg}" "${COMOUT}/${g130file_gtg}"
  fi
 
@@ -59,9 +61,14 @@ if [[ "${SENDDBN}" == "YES" ]]; then
     "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file_ifi}"
     "${DBNROOT}/bin/dbn_alert" MODEL DAFS_GTG_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file_gtg}"
 fi
- 
+
 #--------------------------------------------------------------- 
-#-- process IFI upscaling data 
+#-- process IFI upscaling data
+
+if [[ "${fhr}" == "000" ]] ; then
+    echo "IFI is not generated at forecast hour f000"
+    exit 0
+fi
 
   domain="conus"
   fname1="${NET}.t${cyc}z.ifi.icp.13km.${domain}.f${fhr}.grib2"
