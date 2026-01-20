@@ -37,8 +37,10 @@ grid_specs_130="lambert:265:25.000000 233.862000:451:13545.000000 16.281000:337:
 
 if [[ $var == "ifi" ]] ; then
     interpolation="neighbor"
+    var_alert_subtype=DAFS_IFI_13km_CONUS_GB2
 elif [[ $var == "gtg" ]] ; then
     interpolation="bilinear"
+    var_alert_subtype=DAFS_GTG_13km_CONUS_GB2
 fi
 $WGRIB2 ${dafs_3km} -set_bitmap 1 -set_grib_type c3 \
      -new_grid_winds grid -new_grid_vectors "UGRD:VGRD:USTM:VSTM" \
@@ -52,7 +54,7 @@ fi
 
 # Alert via DBN
 if [[ "${SENDDBN}" == "YES" ]]; then
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_13km_CONUS_GB2 "${job}" "${COMOUT}/${g130file}"
+    "${DBNROOT}/bin/dbn_alert" MODEL "${var_alert_subtype}" "${job}" "${COMOUT}/${g130file}"
 fi
 
 #--------------------------------------------------------------- 

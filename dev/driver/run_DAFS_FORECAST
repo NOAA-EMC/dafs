@@ -6,7 +6,8 @@
 #PBS -l walltime=00:10:00
 #PBS -q debug
 #PBS -A GFS-DEV
-#PBS -l place=vscatter,select=4:ncpus=24
+#PBS -l place=shared,select=1:ncpus=64:prepost=true
+#PBS -l place=vscatter:exclhost
 ##PBS -V
 #PBS -l debug=true
 
@@ -17,11 +18,10 @@ set -x
 export DOMAIN=$domain
 
 # specify computation resource
-export threads=1
+export threads=2
 export MP_LABELIO=yes
 export OMP_NUM_THREADS=$threads
-export APRUN="mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"
-# export APRUN="mpiexec -l -n 48 -ppn 24"
+export APRUN="mpiexec -l -n 32 -ppn 32 --cpu-bind core --depth 2"
 
 # keep proceeses off hyperthread cores
 export OMP_PROC_BIND=true
