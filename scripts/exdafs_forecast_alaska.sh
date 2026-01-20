@@ -17,7 +17,9 @@ if [[ "${fhr}" == "000" ]] ; then
 fi
 
 POSTGRB2TBL=${POSTGRB2TBL:-"${g2tmpl_ROOT}/share/params_grib2_tbl_new"}
-APRUN=${APRUN:-"mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"}
+#APRUN=${APRUN:-"mpiexec -l -n 48 -ppn 12 --cpu-bind core --depth 2"}
+export OMP_NUM_THREADS=2
+APRUN=${APRUN:-"mpiexec -l -n 32 -ppn 32 --cpu-bind core --depth 2"}
 
 cd "${DATA}" || err_exit "FATAL ERROR: Could not 'cd ${DATA}'; ABORT!"
 
@@ -69,7 +71,7 @@ if [[ ! -f "${PGBOUT}" ]]; then
 fi
 
 # Change the data center from EMC to AWC, then copy dafs IFI file to COMOUT and index the file
-dafs_ifi="${NET}.t${cyc}z.ifi.3km.ak.f${fhr}.grib2"
+dafs_ifi="dafs.t${cyc}z.ifi.3km.ak.f${fhr}.grib2"
 
 # Change subcenter to AWC
 # Change generating ID to Forecast product from NCEP/AWC (193)
@@ -83,7 +85,7 @@ fi
 # Alert via DBN
 if [[ "${SENDDBN}" == "YES" ]]; then
     "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_AK_GB2 "${job}" "${COMOUT}/${dafs_ifi}"
-    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_AK_GB2 "${job}" "${COMOUT}/${dafs_ifi}.idx"
+    "${DBNROOT}/bin/dbn_alert" MODEL DAFS_IFI_3km_AK_GB2_IDX "${job}" "${COMOUT}/${dafs_ifi}.idx"
 fi
 
 ###----- PRDGEN process and WMO header ----------------------
